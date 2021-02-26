@@ -6,3 +6,5 @@ Team Members:
 Kelly Tran
 
 John Thieu
+
+Nathan Duong
