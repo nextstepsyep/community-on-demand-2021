@@ -165,6 +165,7 @@ class CreateAccountScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
@@ -194,6 +195,7 @@ class CreateAccountScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextField(
+                    obscureText: true,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),

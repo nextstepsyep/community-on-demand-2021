@@ -104,6 +104,7 @@ class HomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: '  Enter password here...',
