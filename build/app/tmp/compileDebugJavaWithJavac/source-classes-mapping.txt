@@ -1,0 +1,6 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+org/nextstepsyep/community_on_demand_code_demo/BuildConfig.java
+ org.nextstepsyep.community_on_demand_code_demo.BuildConfig
+org/nextstepsyep/community_on_demand_code_demo/MainActivity.java
+ org.nextstepsyep.community_on_demand_code_demo.MainActivity
