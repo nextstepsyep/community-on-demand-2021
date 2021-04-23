@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "943966832901",
+    "project_id": "community-on-demand-a1d5a",
+    "storage_bucket": "community-on-demand-a1d5a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:943966832901:android:66a4af2fad687b3ee0cf6c",
+        "android_client_info": {
+          "package_name": "org.nextstepsyep.community_on_demand_code_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "943966832901-5vumq6idk0633rdjhoh7o679ckossji3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCibGLmI-s44nw-up_1y2gmq8xcg_jyuB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "943966832901-5vumq6idk0633rdjhoh7o679ckossji3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
