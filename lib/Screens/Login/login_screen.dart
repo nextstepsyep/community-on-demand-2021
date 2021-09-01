@@ -1,5 +1,6 @@
 import 'package:community_on_demand_code_demo/Screens/CreateAccount/create_account_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
+import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -128,25 +129,14 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              OutlinedButton(
+              AppButton(
+                buttonText: 'Login',
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new HomeScreen()));
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new HomeScreen()));
                 },
-                child: Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 12.0,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.grey,
-                  ),
-                ),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                ),
               ),
               SizedBox(
                 height: screenHeight * 0.1,

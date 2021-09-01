@@ -1,4 +1,8 @@
 import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
+import 'package:community_on_demand_code_demo/Widgets/create_account_entry_widget.dart';
+import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
+import 'package:community_on_demand_code_demo/Widgets/create_account_form.dart';
+
 import 'package:flutter/material.dart';
 
 class CreateAccountScreen extends StatelessWidget {
@@ -29,202 +33,54 @@ class CreateAccountScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'First Name:',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                    ),
-                  ),
+                CreateAccountEntry(
+                  entryText: 'First Name'
                 ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Last Name:',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                    ),
-                  ),
+                CreateAccountEntry(
+                  entryText: 'Last Name'
                 ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Email:',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                    ),
-                  ),
+                CreateAccountEntry(
+                  entryText: 'Email'
                 ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Username:',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                    ),
-                  ),
+                CreateAccountEntry(
+                  entryText: 'Username'
                 ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Password:',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                    ),
-                  ),
+                CreateAccountEntry(
+                  entryText: 'Password',
+                  obscureText: true,
                 ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      'Confirm Password:',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontStyle: FontStyle.italic,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: TextField(
-                    obscureText: true,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.fromLTRB(10.0, 0, 0, 0),
-                    ),
-                  ),
+                CreateAccountEntry(
+                  entryText: 'Confirm Password',
+                  obscureText: true,
                 ),
                 SizedBox(
                   height: screenHeight * 0.04,
                 ),
-                OutlinedButton(
+                AppButton(
+                  buttonText: 'Create Account',
                   onPressed: () {
                     Navigator.push(
                         context,
                         new MaterialPageRoute(
                             builder: (context) => new HomeScreen()));
                   },
-                  child: Text(
-                    'Create Account',
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
-                      color: Colors.grey,
-                    ),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(Colors.white),
-                  ),
                 ),
+                CreateAccountForm(),
               ],
             ),
           ),
