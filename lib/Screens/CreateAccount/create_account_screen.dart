@@ -32,53 +32,6 @@ class CreateAccountScreen extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                // CreateAccountEntry(
-                //   entryText: 'First Name'
-                // ),
-                // SizedBox(
-                //   height: screenHeight * 0.04,
-                // ),
-                // CreateAccountEntry(
-                //   entryText: 'Last Name'
-                // ),
-                // SizedBox(
-                //   height: screenHeight * 0.04,
-                // ),
-                // CreateAccountEntry(
-                //   entryText: 'Email'
-                // ),
-                // SizedBox(
-                //   height: screenHeight * 0.04,
-                // ),
-                // CreateAccountEntry(
-                //   entryText: 'Username'
-                // ),
-                // SizedBox(
-                //   height: screenHeight * 0.04,
-                // ),
-                // CreateAccountEntry(
-                //   entryText: 'Password',
-                //   obscureText: true,
-                // ),
-                // SizedBox(
-                //   height: screenHeight * 0.04,
-                // ),
-                // CreateAccountEntry(
-                //   entryText: 'Confirm Password',
-                //   obscureText: true,
-                // ),
-                // SizedBox(
-                //   height: screenHeight * 0.04,
-                // ),
-                // AppButton(
-                //   buttonText: 'Create Account',
-                //   onPressed: () {
-                //     Navigator.push(
-                //         context,
-                //         new MaterialPageRoute(
-                //             builder: (context) => new HomeScreen()));
-                //   },
-                // ),
                 CreateAccountForm(),
               ],
             ),

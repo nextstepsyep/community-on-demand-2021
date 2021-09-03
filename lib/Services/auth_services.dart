@@ -13,21 +13,23 @@ Future<void> checkAuth() async {
   }
 }
 
-Future<void> signUp(email, password) async {
+Future<UserCredential> signUp(email, password) async {
   try {
-    UserCredential user = await FirebaseAuth.instance
-      .createUserWithEmailAndPassword(email: email, password: password);
+    UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    return user;
   } catch(e) {
     print(e);
+    throw new Exception("you done fucked up. make an account better next time");
   }
 }
 
-Future<void> signIn(email, password) async {
+Future<UserCredential> signIn(email, password) async {
   try {
-    UserCredential user = await FirebaseAuth.instance
-      .signInWithEmailAndPassword(email: email, password: password);
+    UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    return user;
   } catch(e) {
     print(e);
+    throw new Exception("you done fucked up. log in better next time");
   }
 }
 

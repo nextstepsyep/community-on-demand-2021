@@ -1,5 +1,6 @@
 import 'package:community_on_demand_code_demo/Services/auth_services.dart';
 import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -18,8 +19,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
     
     final Decoration customBoxDecoration = BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(20),);
 
-    String email = '';
-    String password = '';
+    String userEmail = '';
+    String userPassword = '';
 
     return Form(
       key: _formKey,
@@ -38,7 +39,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 }
               },
               onChanged: (val) {
-                setState(() => email = val);
+                setState(() => userEmail = val);
               },
             ),
           ),
@@ -55,7 +56,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 }
               },
               onChanged: (val) {
-                setState(() => password = val);
+                setState(() => userPassword = val);
               },
             ),
           ),
@@ -63,7 +64,24 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
             buttonText: "Create Account",
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                await signUp(email, password);
+                try {
+                  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+                    email: userEmail,
+                    password: userPassword
+                  );
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    print('The password provided is too weak.');
+                  } else if (e.code == 'email-already-in-use') {
+                    print('The account already exists for that email.');
+                  }
+                } catch (e) {
+                  print(e);
+                }
+                Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                    builder: (context) => new HomeScreen()));
               } else {
 
               }
