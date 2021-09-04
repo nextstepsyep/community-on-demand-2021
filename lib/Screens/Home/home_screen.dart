@@ -1,3 +1,5 @@
+import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
+import 'package:community_on_demand_code_demo/Services/auth_services.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,7 +63,16 @@ class _NavigationState extends State<NavigationScreen> {
         title: _widgetOptions.elementAt(_selectedIndex),
         backgroundColor: Colors.white,
       ),
-      body: Center(),
+      body: TextButton(
+        child: Text('sign out'),
+        onPressed: () async {
+          await signOut();
+          Navigator.push(
+            context,
+            new MaterialPageRoute(
+              builder: (context) => new LoginScreen()));
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,

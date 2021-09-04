@@ -14,6 +14,16 @@ class CreateAccountForm extends StatefulWidget {
 
 class _CreateAccountFormState extends State<CreateAccountForm> {
   static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -31,6 +41,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
             decoration: customBoxDecoration,
             child: TextFormField(
               decoration: InputDecoration(border: InputBorder.none),
+              controller: _emailController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter an email address";
@@ -38,8 +49,8 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   return null;
                 }
               },
-              onChanged: (val) {
-                setState(() => userEmail = val);
+              onSaved: (String? val) {
+                userEmail = val!;
               },
             ),
           ),
@@ -48,6 +59,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
             decoration: customBoxDecoration,
             child: TextFormField(
               decoration: InputDecoration(border: InputBorder.none),
+              controller: _passwordController,
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return "Please enter a password";
@@ -55,35 +67,22 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                   return null;
                 }
               },
-              onChanged: (val) {
-                setState(() => userPassword = val);
-              },
+              onSaved: (String? val) {
+                userPassword = val!;
+              }
             ),
           ),
           AppButton(
             buttonText: "Create Account",
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                try {
-                  UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-                    email: userEmail,
-                    password: userPassword
-                  );
-                } on FirebaseAuthException catch (e) {
-                  if (e.code == 'weak-password') {
-                    print('The password provided is too weak.');
-                  } else if (e.code == 'email-already-in-use') {
-                    print('The account already exists for that email.');
-                  }
-                } catch (e) {
-                  print(e);
-                }
+                await signUp(_emailController.text, _passwordController.text);
                 Navigator.push(
                   context,
                   new MaterialPageRoute(
                     builder: (context) => new HomeScreen()));
               } else {
-
+                print("Not validated");
               }
             },
           ),
