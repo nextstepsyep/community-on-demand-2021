@@ -3,8 +3,6 @@ import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'package:firebase_auth/firebase_auth.dart';
-
 class CreateAccountForm extends StatefulWidget {
   const CreateAccountForm({Key? key}) : super(key: key);
   

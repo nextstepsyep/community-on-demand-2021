@@ -1,6 +1,5 @@
 import 'package:community_on_demand_code_demo/Screens/CreateAccount/create_account_screen.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
-import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
+import 'package:community_on_demand_code_demo/Widgets/login_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -42,102 +41,7 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.1,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Username/Email:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '  Enter username here...',
-                    hintStyle: TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  print('Forgot Username Page');
-                },
-                child: Text(
-                  'Forgot Username?',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Password:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '  Enter password here...',
-                    hintStyle: TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  print('Forgot Password Page');
-                },
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              AppButton(
-                buttonText: 'Login',
-                onPressed: () {
-                    Navigator.push(
-                        context,
-                        new MaterialPageRoute(
-                            builder: (context) => new HomeScreen()));
-                },
-              ),
+              LoginForm(),
               SizedBox(
                 height: screenHeight * 0.1,
               ),
@@ -152,9 +56,9 @@ class LoginScreen extends StatelessWidget {
               TextButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new CreateAccountScreen()));
+                    context,
+                    new MaterialPageRoute(
+                      builder: (context) => new CreateAccountScreen()));
                 },
                 child: Text(
                   'Click here to create an account.',

@@ -1,14 +1,9 @@
-import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
-import 'package:community_on_demand_code_demo/Widgets/create_account_entry_widget.dart';
-import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
 import 'package:community_on_demand_code_demo/Widgets/create_account_form.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
 
     return SafeArea(
       child: Scaffold(
