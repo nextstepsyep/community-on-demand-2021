@@ -11,7 +11,7 @@ class CreateAccountForm extends StatefulWidget {
 }
 
 class _CreateAccountFormState extends State<CreateAccountForm> {
-  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 

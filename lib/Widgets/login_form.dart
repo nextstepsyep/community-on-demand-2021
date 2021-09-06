@@ -11,7 +11,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
-  static GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -30,12 +30,13 @@ class _LoginFormState extends State<LoginForm> {
 
     return Form(
       key: _formKey,
-      child: Column(
+        child: Column(
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: Align(
                   alignment: Alignment.centerLeft,
+                  
                   child: Text(
                     'Username/Email:',
                     textAlign: TextAlign.left,
@@ -51,26 +52,28 @@ class _LoginFormState extends State<LoginForm> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '  Enter username here...',
-                    hintStyle: TextStyle(
-                      fontStyle: FontStyle.italic,
+                child: Material(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '  Enter username here...',
+                      hintStyle: TextStyle(
+                        fontStyle: FontStyle.italic,
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
                     ),
-                    contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter an email address";
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (String? val) {
+                      userEmail = val!;
+                    },
                   ),
-                  controller: _emailController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter an email address";
-                    } else {
-                      return null;
-                    }
-                  },
-                  onSaved: (String? val) {
-                    userEmail = val!;
-                  },
                 ),
               ),
               TextButton(
@@ -105,27 +108,29 @@ class _LoginFormState extends State<LoginForm> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: TextFormField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '  Enter password here...',
-                    hintStyle: TextStyle(
-                      fontStyle: FontStyle.italic,
+                child: Material(
+                  child: TextFormField(
+                    obscureText: true,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: '  Enter password here...',
+                      hintStyle: TextStyle(
+                        fontStyle: FontStyle.italic,
+                      ),
+                      contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
                     ),
-                    contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
-                  ),
-                  controller: _passwordController,
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "Please enter a password";
-                    } else {
-                      return null;
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "Please enter a password";
+                      } else {
+                        return null;
+                      }
+                    },
+                    onSaved: (String? val) {
+                      userPassword = val!;
                     }
-                  },
-                  onSaved: (String? val) {
-                    userPassword = val!;
-                  }
+                  ),
                 ),
               ),
               TextButton(
