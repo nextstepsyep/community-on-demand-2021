@@ -1,7 +1,11 @@
+import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/badges_screen.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/view_reports_screen.dart';
+import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../home_screen.dart';
+import 'classes_screen.dart';
 
 class Profile extends StatelessWidget {
   @override
@@ -41,7 +45,7 @@ class Profile extends StatelessWidget {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new ClassesPage()));
             },
             child: Text(
               'Classes',
@@ -64,7 +68,7 @@ class Profile extends StatelessWidget {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new BadgesPage()));
             },
             child: Text(
               'Badges',
@@ -87,7 +91,7 @@ class Profile extends StatelessWidget {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new ViewReportsPage()));
             },
             child: Text(
               'View Report',
@@ -149,7 +153,7 @@ class Profile extends StatelessWidget {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new LoginScreen()));
             },
             child: Text(
               'Logout',
