@@ -31,12 +31,15 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.25,
               ),
-              Text(
-                'Community on Demand',
-                style: TextStyle(
-                  fontFamily: 'Cookie',
-                  fontSize: screenWidth * 0.1,
-                ),
+              Material(
+                color: Colors.transparent,
+                child: Text(
+                  'Community on Demand',
+                  style: TextStyle(
+                    fontFamily: 'Cookie',
+                    fontSize: screenWidth * 0.1,
+                  ),
+                )
               ),
               SizedBox(
                 height: screenHeight * 0.1,

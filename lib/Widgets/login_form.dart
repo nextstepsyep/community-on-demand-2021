@@ -36,13 +36,15 @@ class _LoginFormState extends State<LoginForm> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  
-                  child: Text(
-                    'Username/Email:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      'Username/Email:',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ),
                 ),
@@ -93,12 +95,15 @@ class _LoginFormState extends State<LoginForm> {
                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                 child: Align(
                   alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Password:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
+                  child: Material(
+                    color: Colors.transparent,
+                    child: Text(
+                      'Password:',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ),
                 ),
