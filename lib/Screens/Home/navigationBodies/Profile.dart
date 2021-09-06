@@ -1,15 +1,166 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../home_screen.dart';
+
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Container(
-        margin: const EdgeInsets.all(10.0),
-        color: Colors.amber[600],
-        width: 48.0,
-        height: 48.0,
-        child: Text('Profile'));
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    return new Center(
+      widthFactor: screenWidth * 0.95,
+      heightFactor: screenHeight * 0.95,
+      child: Column(
+        children: <Widget>[
+          Text(
+            'Name',
+            style: TextStyle(
+              fontFamily: 'Cookie',
+              fontSize: screenWidth * 0.1,
+            ),
+          ),
+          Text(
+            'Bio Placeholder',
+            style: TextStyle(
+              fontFamily: 'Cookie',
+              fontSize: screenWidth * 0.1,
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(screenWidth - 30, 60),
+              primary: Colors.white,
+              elevation: 0,
+              shape: StadiumBorder(),
+              side: BorderSide(color: Colors.grey, width: 1),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new HomeScreen()));
+            },
+            child: Text(
+              'Classes',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(screenWidth - 30, 60),
+              primary: Colors.white,
+              elevation: 0,
+              shape: StadiumBorder(),
+              side: BorderSide(color: Colors.grey, width: 1),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new HomeScreen()));
+            },
+            child: Text(
+              'Badges',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(screenWidth - 30, 60),
+              primary: Colors.white,
+              elevation: 0,
+              shape: StadiumBorder(),
+              side: BorderSide(color: Colors.grey, width: 1),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new HomeScreen()));
+            },
+            child: Text(
+              'View Report',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(screenWidth - 30, 60),
+              primary: Colors.white,
+              elevation: 0,
+              shape: StadiumBorder(),
+              side: BorderSide(color: Colors.grey, width: 1),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new HomeScreen()));
+            },
+            child: Text(
+              'Past Projects',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              minimumSize: Size(screenWidth - 30, 60),
+              primary: Colors.white,
+              elevation: 0,
+              shape: StadiumBorder(),
+              side: BorderSide(color: Colors.grey, width: 1),
+            ),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new HomeScreen()));
+            },
+            child: Text(
+              'Settings',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          SizedBox(height: 10),
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                      builder: (context) => new HomeScreen()));
+            },
+            child: Text(
+              'Logout',
+              style: TextStyle(
+                fontSize: 20.0,
+                color: Colors.red,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
