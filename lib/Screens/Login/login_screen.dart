@@ -48,13 +48,16 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.1,
               ),
-              Text(
-                'Don\'t have an account yet?',
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.grey,
-                ),
+              Material(
+                color: Colors.transparent,
+                child: Text(
+                  'Don\'t have an account yet?',
+                  style: TextStyle(
+                    fontSize: 12.0,
+                    fontStyle: FontStyle.italic,
+                    color: Colors.grey,
+                  ),
+                )
               ),
               TextButton(
                 onPressed: () {
