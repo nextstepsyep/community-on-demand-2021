@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -8,12 +7,12 @@ class AlertMenu extends StatelessWidget {
   final List<Widget> actions;
 
   AlertMenu({
-    this.title,
-    this.content,
+    this.title = "",
+    this.content = "",
     this.actions = const [],
   });
 
-  static show({BuildContext context, WidgetBuilder builder}) {
+  static show({required BuildContext context, required WidgetBuilder builder}) {
     showDialog(
       context: context,
       barrierDismissible: false,
