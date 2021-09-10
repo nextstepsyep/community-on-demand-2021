@@ -19,7 +19,7 @@ Future<UserCredential> signUp(email, password) async {
     return user;
   } catch(e) {
     print(e);
-    throw new Exception("you done fucked up. make an account better next time");
+    throw new Exception("Exception with signUp method");
   }
 }
 
@@ -29,7 +29,7 @@ Future<UserCredential> signIn(email, password) async {
     return user;
   } catch(e) {
     print(e);
-    throw new Exception("you done fucked up. log in better next time");
+    throw new Exception("Exception with signIn method");
   }
 }
 
