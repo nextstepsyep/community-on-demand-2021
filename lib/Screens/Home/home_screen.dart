@@ -2,6 +2,8 @@ import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
 import 'package:community_on_demand_code_demo/Services/auth_services.dart';
 import 'package:flutter/material.dart';
 
+import 'navigationBodies/Profile.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,13 @@ class NavigationScreen extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _NavigationState extends State<NavigationScreen> {
   int _selectedIndex = 0;
+  static List<Widget> _navigationBodies = <Widget>[
+    Container(),
+    Container(),
+    Container(),
+    Container(),
+    Profile()
+  ];
   static const Color barColor = Colors.white;
   static const TextStyle optionStyle = TextStyle(
       fontSize: 30,
@@ -63,16 +72,7 @@ class _NavigationState extends State<NavigationScreen> {
         title: _widgetOptions.elementAt(_selectedIndex),
         backgroundColor: Colors.white,
       ),
-      body: TextButton(
-        child: Text('sign out'),
-        onPressed: () async {
-          await signOut();
-          Navigator.push(
-            context,
-            new MaterialPageRoute(
-              builder: (context) => new LoginScreen()));
-        },
-      ),
+      body: _navigationBodies.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         type: BottomNavigationBarType.fixed,
