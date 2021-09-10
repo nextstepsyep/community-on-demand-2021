@@ -1,4 +1,6 @@
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/badges_screen.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profile_settings.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/view_reports_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -114,7 +116,7 @@ class Profile extends StatelessWidget {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new PastProjects()));
             },
             child: Text(
               'Past Projects',
@@ -137,7 +139,7 @@ class Profile extends StatelessWidget {
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new ProfileSettings()));
             },
             child: Text(
               'Settings',
