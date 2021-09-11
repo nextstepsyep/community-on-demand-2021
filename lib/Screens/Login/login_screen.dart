@@ -1,5 +1,5 @@
 import 'package:community_on_demand_code_demo/Screens/CreateAccount/create_account_screen.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
+import 'package:community_on_demand_code_demo/Widgets/login_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -31,140 +31,40 @@ class LoginScreen extends StatelessWidget {
               SizedBox(
                 height: screenHeight * 0.25,
               ),
-              Text(
-                'Community on Demand',
-                style: TextStyle(
-                  fontFamily: 'Cookie',
-                  fontSize: screenWidth * 0.1,
-                ),
+              Material(
+                color: Colors.transparent,
+                child: Text(
+                  'Community on Demand',
+                  style: TextStyle(
+                    fontFamily: 'Cookie',
+                    fontSize: screenWidth * 0.1,
+                  ),
+                )
               ),
               SizedBox(
                 height: screenHeight * 0.1,
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Username/Email:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
+              LoginForm(),
+              SizedBox(
+                height: screenHeight * 0.1,
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '  Enter username here...',
-                    hintStyle: TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  print('Forgot Username Page');
-                },
+              Material(
+                color: Colors.transparent,
                 child: Text(
-                  'Forgot Username?',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Password:',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      fontSize: 12.0,
-                      fontStyle: FontStyle.italic,
-                    ),
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: '  Enter password here...',
-                    hintStyle: TextStyle(
-                      fontStyle: FontStyle.italic,
-                    ),
-                    contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
-                  ),
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  print('Forgot Password Page');
-                },
-                child: Text(
-                  'Forgot Password?',
-                  style: TextStyle(
-                    fontSize: 10.0,
-                    fontStyle: FontStyle.italic,
-                    color: Colors.grey,
-                  ),
-                ),
-              ),
-              OutlinedButton(
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new HomeScreen()));
-                },
-                child: Text(
-                  'Login',
+                  'Don\'t have an account yet?',
                   style: TextStyle(
                     fontSize: 12.0,
                     fontStyle: FontStyle.italic,
                     color: Colors.grey,
                   ),
-                ),
-                style: ButtonStyle(
-                  backgroundColor:
-                      MaterialStateProperty.all<Color>(Colors.white),
-                ),
-              ),
-              SizedBox(
-                height: screenHeight * 0.1,
-              ),
-              Text(
-                'Don\'t have an account yet?',
-                style: TextStyle(
-                  fontSize: 12.0,
-                  fontStyle: FontStyle.italic,
-                  color: Colors.grey,
-                ),
+                )
               ),
               TextButton(
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      new MaterialPageRoute(
-                          builder: (context) => new CreateAccountScreen()));
+                    context,
+                    new MaterialPageRoute(
+                      builder: (context) => new CreateAccountScreen()));
                 },
                 child: Text(
                   'Click here to create an account.',
