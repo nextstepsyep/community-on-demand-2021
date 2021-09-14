@@ -25,7 +25,7 @@ class _NavigationState extends State<NavigationScreen> {
     Container(),
     Container(),
     Container(),
-    Profile()
+    ProfileScreen()
   ];
   static const Color barColor = Colors.white;
   static const TextStyle optionStyle = TextStyle(
