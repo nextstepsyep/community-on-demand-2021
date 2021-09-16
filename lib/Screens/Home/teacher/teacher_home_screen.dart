@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'navigationBodies/Profile.dart';
+import '../teacher/navigationBodies/TeacherProfile.dart';
 
 class TeacherHomeScreen extends StatelessWidget {
   @override
@@ -25,7 +25,7 @@ class _NavigationState extends State<NavigationScreen> {
     Container(),
     Container(),
     Container(),
-    Profile()
+    TeacherProfile()
   ];
   static const Color barColor = Colors.white;
   static const TextStyle optionStyle = TextStyle(
