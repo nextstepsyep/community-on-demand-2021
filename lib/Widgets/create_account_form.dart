@@ -1,6 +1,6 @@
 import 'package:community_on_demand_code_demo/Services/auth_services.dart';
 import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/teacher_home_screen.dart';
 import 'package:flutter/material.dart';
 
 class CreateAccountForm extends StatefulWidget {
@@ -81,7 +81,7 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
                 Navigator.push(
                   context,
                   new MaterialPageRoute(
-                    builder: (context) => new HomeScreen()));
+                    builder: (context) => new TeacherHomeScreen()));
               } else {
                 print("Not validated");
               }
