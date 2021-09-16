@@ -1,7 +1,4 @@
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/badges_screen.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profile_settings.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/view_reports_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

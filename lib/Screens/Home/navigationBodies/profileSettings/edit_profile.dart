@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 // import '../home_screen.dart';
-// import 'classes_screen.dart';
+// import 'teacher_classes_screen.dart';
 
 class EditProfile extends StatelessWidget {
   static const double paddingHeight = 20;
