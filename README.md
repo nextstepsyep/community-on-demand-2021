@@ -19,3 +19,5 @@ Nathan Duong
 Kevin Huynh
 
 Jake Smith
+
+Brandon Chung
