@@ -18,14 +18,7 @@ class TeacherClassesScreen extends StatelessWidget {
       child: Column(
         children: <Widget>[
           Text(
-            'Name',
-            style: TextStyle(
-              fontFamily: 'Cookie',
-              fontSize: screenWidth * 0.1,
-            ),
-          ),
-          Text(
-            'Bio Placeholder',
+            'Current Class: ?',
             style: TextStyle(
               fontFamily: 'Cookie',
               fontSize: screenWidth * 0.1,
@@ -41,101 +34,12 @@ class TeacherClassesScreen extends StatelessWidget {
               side: BorderSide(color: Colors.grey, width: 1),
             ),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new BadgesPage()));
             },
             child: Text(
-              'Badges',
+              'Class Placeholder',
               style: TextStyle(
                 fontSize: 20.0,
                 color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(screenWidth - 30, 60),
-              primary: Colors.white,
-              elevation: 0,
-              shape: StadiumBorder(),
-              side: BorderSide(color: Colors.grey, width: 1),
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new ViewReportsPage()));
-            },
-            child: Text(
-              'View Report',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(screenWidth - 30, 60),
-              primary: Colors.white,
-              elevation: 0,
-              shape: StadiumBorder(),
-              side: BorderSide(color: Colors.grey, width: 1),
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new PastProjects()));
-            },
-            child: Text(
-              'Past Projects',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(screenWidth - 30, 60),
-              primary: Colors.white,
-              elevation: 0,
-              shape: StadiumBorder(),
-              side: BorderSide(color: Colors.grey, width: 1),
-            ),
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new ProfileSettings()));
-            },
-            child: Text(
-              'Settings',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          SizedBox(height: 10),
-          TextButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => new LoginScreen()));
-            },
-            child: Text(
-              'Logout',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.red,
               ),
             ),
           ),

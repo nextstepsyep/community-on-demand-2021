@@ -1,3 +1,4 @@
+import 'package:community_on_demand_code_demo/Screens/Home/teacher/navigationBodies/teacher_classes_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../teacher/navigationBodies/TeacherProfile.dart';
@@ -21,7 +22,7 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationState extends State<NavigationScreen> {
   int _selectedIndex = 0;
   static List<Widget> _navigationBodies = <Widget>[
-    Container(),
+    TeacherClassesScreen(),
     Container(),
     Container(),
     Container(),
