@@ -1,24 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DataBase {
-  String _uid = "";
-  final CollectionReference _userData =
-      FirebaseFirestore.instance.collection("users");
+String _uid = "";
+final CollectionReference _userData =
+    FirebaseFirestore.instance.collection("users");
+Stream<DocumentSnapshot> _stream = _userData.doc(_uid).snapshots();
+Map<String, dynamic> _data = Map();
+void setUID(String uid) {
+  _uid = uid;
+  _stream = _userData.doc(_uid).snapshots();
+  _stream.listen((event) => _data = event.data() as Map<String, dynamic>,
+      onError: () => print('could not load data'));
+}
 
-  DataBase._internal(); //private constructor
-  static final DataBase database =
-      DataBase._internal(); //singleton design pattern
-  void setUID(String uid) {
-    this._uid = uid;
-  }
+Future updateProfile(String firstName, String lastName, String bio) async {
+  return await _userData
+      .doc(_uid)
+      .set({'firstName': firstName, 'lastName': lastName, 'bio': bio});
+}
 
-  Future updateProfile(String firstName, String lastName, String bio) async {
-    return await _userData
-        .doc(_uid)
-        .set({'firstName': firstName, 'lastName': lastName, 'bio': bio});
-  }
-
-  Stream<DocumentSnapshot> getData() {
-    return _userData.doc(_uid).snapshots();
-  }
+Map<String, dynamic> getData() {
+  return _data;
 }

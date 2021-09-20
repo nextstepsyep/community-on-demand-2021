@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
 import 'package:community_on_demand_code_demo/Services/auth_services.dart';
-import 'package:community_on_demand_code_demo/Services/data_services.dart';
 import 'package:community_on_demand_code_demo/Widgets/app_button_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -158,7 +156,6 @@ class _LoginFormState extends State<LoginForm> {
               if (_formKey.currentState!.validate()) {
                 UserCredential user = await signIn(
                     _emailController.text, _passwordController.text);
-                DataBase.database.setUID(user.user!.uid);
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
