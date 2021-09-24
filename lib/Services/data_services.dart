@@ -9,7 +9,7 @@ void setUID(String uid) {
   _uid = uid;
   _stream = _userData.doc(_uid).snapshots();
   _stream.listen((event) => _data = event.data() as Map<String, dynamic>,
-      onError: () => print('could not load data'));
+      onError: (e) => print('could not load data'));
 }
 
 Future updateProfile(String firstName, String lastName, String bio) async {
