@@ -43,6 +43,7 @@ Future<UserCredential> signIn(email, password) async {
 Future<void> signOut() async {
   try {
     FirebaseAuth.instance.signOut();
+    setUID('');
   } catch (e) {
     print(e);
   }
