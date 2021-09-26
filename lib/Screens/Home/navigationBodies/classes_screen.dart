@@ -2,8 +2,6 @@ import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../home_screen.dart';
-import 'classes_screen.dart';
 import 'join_class_screen.dart';
 
 class ClassesPage extends StatelessWidget {
@@ -38,7 +36,7 @@ class ClassesPage extends StatelessWidget {
                             textColor: Colors.black,
                             child: Text('Cancel'),
                             onPressed: () {
-                                Navigator.pop(context);
+                              Navigator.of(context, rootNavigator: true).pop('dialog');
                             },
                           ),
                           FlatButton(
