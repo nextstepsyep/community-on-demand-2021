@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'data_services.dart';
+
 Future<void> checkAuth() async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
@@ -8,16 +10,19 @@ Future<void> checkAuth() async {
     } else {
       print("Signed in");
     }
-  } catch(e) {
+  } catch (e) {
     print(e);
   }
 }
 
 Future<UserCredential> signUp(email, password) async {
   try {
-    UserCredential user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
+    UserCredential user = await FirebaseAuth.instance
+        .createUserWithEmailAndPassword(email: email, password: password);
+    setUID(user.user!.uid);
+    updateProfile('firstName', 'lastName', 'bio');
     return user;
-  } catch(e) {
+  } catch (e) {
     print(e);
     throw new Exception("Exception with signUp method");
   }
@@ -25,9 +30,11 @@ Future<UserCredential> signUp(email, password) async {
 
 Future<UserCredential> signIn(email, password) async {
   try {
-    UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
+    UserCredential user = await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+    setUID(user.user!.uid);
     return user;
-  } catch(e) {
+  } catch (e) {
     print(e);
     throw new Exception("Exception with signIn method");
   }
@@ -36,7 +43,8 @@ Future<UserCredential> signIn(email, password) async {
 Future<void> signOut() async {
   try {
     FirebaseAuth.instance.signOut();
-  } catch(e) {
+    setUID('');
+  } catch (e) {
     print(e);
   }
 }
