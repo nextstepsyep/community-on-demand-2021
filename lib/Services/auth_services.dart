@@ -1,7 +1,11 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'data_services.dart';
+import 'user_data_services.dart';
 
+StreamSubscription<DocumentSnapshot>? _userStream;
 Future<void> checkAuth() async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
@@ -19,7 +23,7 @@ Future<UserCredential> signUp(email, password) async {
   try {
     UserCredential user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    setUID(user.user!.uid);
+    _userStream = setUID(user.user!.uid);
     updateProfile('firstName', 'lastName', 'bio');
     return user;
   } catch (e) {
@@ -32,7 +36,7 @@ Future<UserCredential> signIn(email, password) async {
   try {
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    setUID(user.user!.uid);
+    _userStream = setUID(user.user!.uid);
     return user;
   } catch (e) {
     print(e);
@@ -43,7 +47,7 @@ Future<UserCredential> signIn(email, password) async {
 Future<void> signOut() async {
   try {
     FirebaseAuth.instance.signOut();
-    setUID('');
+    _userStream!.cancel();
   } catch (e) {
     print(e);
   }
