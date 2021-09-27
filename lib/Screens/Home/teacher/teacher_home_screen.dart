@@ -34,10 +34,30 @@ class _NavigationState extends State<NavigationScreen> {
       fontWeight: FontWeight.bold,
       color: Colors.black,
       fontFamily: 'Cookie');
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Classes',
-      style: optionStyle,
+  static List<Widget> _widgetOptions = <Widget>[
+    Row(
+      children: <Widget>[
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 0.0),
+            child: Text(
+              "Classes",
+              style: optionStyle,
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+        FloatingActionButton(
+          onPressed: () {
+            // TODO : Firebase data for class objects need to be implemented.
+          },
+          child: const Icon(
+              Icons.add,
+              color: Colors.black
+          ),
+          backgroundColor: Colors.white
+        )
+      ],
     ),
     Text(
       'Projects',
