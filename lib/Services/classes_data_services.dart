@@ -18,11 +18,28 @@ void switchClass(String id) {
       onError: (e) => print('could not load data'));
 }
 
-// TODO: How to ensure classCode is always unique?
-Future addClass(String className, String classCode) async {
+// Keep a separate doc for each array of classes to quickly find out size of array.
+Future addClass(String className) async {
+  QuerySnapshot querySnapshot = await _classesData.get();
+  final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
+  String classCode = hash(allData.length);
+
   return await _classesData
       .doc()
       .set({'className': className, 'classCode': classCode});
+}
+
+// Creates a 4 digit class code based each digit having a value of [0-9]
+// Any leftover digits is prepended with 0s -> ex: 9 -> 0009
+String hash(int numClasses) {
+  String classes = "$numClasses";
+  int prepend = 4 - classes.length;
+  String prefix = "";
+  for (int i = 0; i < prepend; i++)
+    prefix += "0";
+
+  prefix += classes;
+  return prefix;
 }
 
 Future addStudent(String classId, String studentId) async {

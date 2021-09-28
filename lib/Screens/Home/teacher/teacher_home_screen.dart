@@ -1,4 +1,5 @@
 import 'package:community_on_demand_code_demo/Screens/Home/teacher/navigationBodies/teacher_classes_screen.dart';
+import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
 import 'package:flutter/material.dart';
 
 import '../teacher/navigationBodies/TeacherProfile.dart';
@@ -62,7 +63,7 @@ class _NavigationState extends State<NavigationScreen> {
                 // TODO : Firebase data for class objects need to be implemented.
                 Navigator.of(context).push(AddClassDialogRoute(
                     builder: (context) {
-                      return const _AddClassPopupCard();
+                      return _AddClassPopupCard();
                     }
                 ));
               },
@@ -140,8 +141,10 @@ class _NavigationState extends State<NavigationScreen> {
 const String _heroAddClass = 'add-class-hero';
 
 class _AddClassPopupCard extends StatelessWidget {
-  /// {@macro add_class_popup_card}
-  const _AddClassPopupCard({Key? key}) : super(key: key);
+  _AddClassPopupCard({Key? key}) : super(key: key);
+
+  final TextEditingController classNameController =
+  TextEditingController(text: getData()['className']);
 
   @override
   Widget build(BuildContext context) {
@@ -164,20 +167,15 @@ class _AddClassPopupCard extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const TextField(
-                      decoration: InputDecoration(
-                        hintText: "Enter your class' name",
-                        border: InputBorder.none,
-                      ),
-                      cursorColor: Colors.white,
-                    ),
+                    buildTextField("Enter your class' name", 1, 1, classNameController),
+                    SizedBox(height: 20),
                     const Divider(
                       color: Colors.black,
                       thickness: 0.2,
                     ),
                     TextButton(
                       onPressed: () {
-                        // TODO: Call database to add class.
+                        addClass(classNameController.text);
                       },
                       child: const Text('Create Class'),
                     ),
@@ -187,6 +185,21 @@ class _AddClassPopupCard extends StatelessWidget {
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  TextField buildTextField(String labelText, int minLines, int maxLines,
+      TextEditingController controller) {
+    return TextField(
+      textAlignVertical: TextAlignVertical.top,
+      minLines: minLines,
+      maxLines: maxLines,
+      controller: controller,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: labelText,
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
   }
