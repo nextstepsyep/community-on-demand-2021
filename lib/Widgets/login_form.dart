@@ -160,7 +160,7 @@ class _LoginFormState extends State<LoginForm> {
                 Navigator.push(
                     context,
                     new MaterialPageRoute(
-                      builder: (context) => new HomeScreen()));
+                      builder: (context) => new TeacherHomeScreen()));
                   } else {
                     print("Not validated");
                   }

@@ -154,42 +154,32 @@ class _AddClassPopupCard extends StatelessWidget {
             return RectTween(begin: begin, end: end);
           },
           child: Material(
-            color: Colors.black,
+            color: Colors.white,
             elevation: 2,
             shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(26.0),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     const TextField(
                       decoration: InputDecoration(
-                        hintText: 'New class',
+                        hintText: "Enter your class' name",
                         border: InputBorder.none,
                       ),
                       cursorColor: Colors.white,
                     ),
                     const Divider(
-                      color: Colors.white,
-                      thickness: 0.2,
-                    ),
-                    const TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Write a note',
-                        border: InputBorder.none,
-                      ),
-                      cursorColor: Colors.white,
-                      maxLines: 6,
-                    ),
-                    const Divider(
-                      color: Colors.white,
+                      color: Colors.black,
                       thickness: 0.2,
                     ),
                     TextButton(
-                      onPressed: () {},
-                      child: const Text('Add'),
+                      onPressed: () {
+                        // TODO: Call database to add class.
+                      },
+                      child: const Text('Create Class'),
                     ),
                   ],
                 ),
