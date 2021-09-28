@@ -1,15 +1,23 @@
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/badges_screen.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profile_settings.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/view_reports_screen.dart';
-import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
-import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
 
 class TeacherClassesScreen extends StatelessWidget {
+  List classes = [];
+  @override
+  void initState() {
+    fetchData();
+  }
+
+  void fetchData() async {
+    classes = await getClasses();
+    if (classes == null) {
+      print("Unable to fetch list of classes");
+    }
+  }
   @override
   Widget build(BuildContext context) {
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -26,23 +34,35 @@ class TeacherClassesScreen extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(screenWidth - 30, 60),
-              primary: Colors.white,
-              elevation: 0,
-              shape: StadiumBorder(),
-              side: BorderSide(color: Colors.grey, width: 1),
-            ),
-            onPressed: () {
-            },
-            child: Text(
-              'Class Placeholder',
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
-            ),
+          ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: classes.length,
+            itemBuilder: (context, index) {
+              return Column(
+                  children: <Widget> [
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(screenWidth - 30, 60),
+                        primary: Colors.white,
+                        elevation: 0,
+                        shape: StadiumBorder(),
+                        side: BorderSide(color: Colors.grey, width: 1),
+                      ),
+                      onPressed: () {
+                      },
+                      child: Text(
+                        'Class Placeholder',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10)
+                ]
+              );
+            }
           ),
         ],
       ),

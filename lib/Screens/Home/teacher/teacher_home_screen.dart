@@ -60,7 +60,6 @@ class _NavigationState extends State<NavigationScreen> {
           ),
           FloatingActionButton(
               onPressed: () {
-                // TODO : Firebase data for class objects need to be implemented.
                 Navigator.of(context).push(AddClassDialogRoute(
                     builder: (context) {
                       return _AddClassPopupCard();

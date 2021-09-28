@@ -52,3 +52,8 @@ Future addStudent(String classId, String studentId) async {
 Map<String, dynamic> getData() {
   return _data;
 }
+
+Future<List> getClasses() async {
+  QuerySnapshot querySnapshot = await _classesData.get();
+  return querySnapshot.docs.map((doc) => doc.data()).toList();
+}
