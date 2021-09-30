@@ -46,3 +46,14 @@ void joinClass(int classCode) {
       .doc(_classIDs[classCode])
       .update({'students.$uid': getUserReference()});
 }
+
+void leaveClass(int classCode) {
+  String uid = getUserID();
+  _classes![classCode]!['students'].removeWhere((key, value) => key == uid);
+}
+
+bool studentInClass(int classCode) {
+  String uid = getUserID();
+  print(getClassesData()![classCode]!['students']);
+  return getClassesData()![classCode]!['students'].containsKey(uid);
+}
