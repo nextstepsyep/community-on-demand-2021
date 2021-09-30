@@ -147,6 +147,7 @@ class _ViewClassPopupCard extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         deleteClass(id);
+
                         Navigator.of(context).push(AddClassDialogRoute(
                             builder: (context) {
                               return new _ConfirmActionPopupCard();
