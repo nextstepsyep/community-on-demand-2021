@@ -43,6 +43,12 @@ class _NavigationState extends State<NavigationScreen> {
     });
   }
 
+  void refresh() {
+    setState(() {
+      _navigationBodies[0].fetchData();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> _widgetOptions = <Widget>[
@@ -62,7 +68,7 @@ class _NavigationState extends State<NavigationScreen> {
               onPressed: () {
                 Navigator.of(context).push(AddClassDialogRoute(
                     builder: (context) {
-                      return _AddClassPopupCard();
+                      return _AddClassPopupCard(notifyParent: refresh);
                     }
                 ));
               },
@@ -140,7 +146,8 @@ class _NavigationState extends State<NavigationScreen> {
 const String _heroAddClass = 'add-class-hero';
 
 class _AddClassPopupCard extends StatelessWidget {
-  _AddClassPopupCard({Key? key}) : super(key: key);
+   Function() notifyParent;
+  _AddClassPopupCard({Key? key, required this.notifyParent}) : super(key: key);
 
   final TextEditingController classNameController =
   TextEditingController(text: getData()['className']);
@@ -175,6 +182,11 @@ class _AddClassPopupCard extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         addClass(classNameController.text);
+                        Navigator.of(context).push(AddClassDialogRoute(
+                            builder: (context) {
+                              return new _ConfirmActionPopupCard();
+                            }
+                        ));
                       },
                       child: const Text('Create Class'),
                     ),
@@ -199,6 +211,52 @@ class _AddClassPopupCard extends StatelessWidget {
         border: OutlineInputBorder(),
         labelText: labelText,
         floatingLabelBehavior: FloatingLabelBehavior.always,
+      ),
+    );
+  }
+}
+
+const String _heroConfirmAction = 'confirm-action-hero';
+
+class _ConfirmActionPopupCard extends StatelessWidget {
+  _ConfirmActionPopupCard({Key? key}) :
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Hero(
+          tag: _heroConfirmAction,
+          createRectTween: (begin, end) {
+            return RectTween(begin: begin, end: end);
+          },
+          child: Material(
+            color: Colors.white,
+            elevation: 2,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(26.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      onPressed: () { },
+                      child: const Text('Action successfully completed!'),
+                    ),
+                    const Divider(
+                      color: Colors.black,
+                      thickness: 0.2,
+                    )
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }

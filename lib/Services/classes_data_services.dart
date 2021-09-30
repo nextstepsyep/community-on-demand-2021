@@ -53,13 +53,26 @@ Map<String, dynamic> getData() {
   return _data;
 }
 
+void deleteClass(String id) {
+  // Deletes class document w/ specified id. Since students are contained in a map
+  // and not a sub-collection, nested deletion is not necessary.
+
+  _classesData.doc(id).get().then((snapshot) {
+    snapshot.reference.delete();
+  });
+}
+
+updateCurrentClass() {
+
+}
+
 Future getClasses() async {
   List classes = [];
 
   try {
     await _classesData.get().then((querySnapshot) {
       querySnapshot.docs.forEach((element) {
-        classes.add(element.data());
+        classes.add(element);
       });
     });
     return classes;
