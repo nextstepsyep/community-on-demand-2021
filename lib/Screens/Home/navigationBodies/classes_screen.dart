@@ -141,6 +141,7 @@ class ClassesPage extends StatelessWidget {
                             textColor: Colors.white,
                             child: Text('Browse Classes'),
                             onPressed: () {
+                              Navigator.of(context).pop();
                               Navigator.push(
                                   context,
                                   new MaterialPageRoute(
