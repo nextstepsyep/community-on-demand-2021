@@ -59,8 +59,8 @@ class ClassesPage extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) =>
                       AlertMenu(
-                        title: "Join Class",
-                        content: "Join " +
+                        title: "Leaving class",
+                        content: "Leave " +
                             "${getClassesData()![code]!['name']}" + "? (Class Code: " +
                             "${getClassesData()![code]!['code']}" + ")",
                         actions: [
