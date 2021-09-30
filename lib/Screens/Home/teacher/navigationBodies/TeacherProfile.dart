@@ -3,7 +3,7 @@ import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class TeacherProfile extends StatelessWidget {
+class TeacherProfile extends State {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;

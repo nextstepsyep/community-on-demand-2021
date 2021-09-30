@@ -23,8 +23,8 @@ class NavigationScreen extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _NavigationState extends State<NavigationScreen> {
   int _selectedIndex = 0;
-  static List<Widget> _navigationBodies = <Widget>[
-    TeacherClassesScreen(),
+  static List _navigationBodies =[
+    new TeacherClassesScreen(),
     Container(),
     Container(),
     Container(),

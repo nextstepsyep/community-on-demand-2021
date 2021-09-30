@@ -26,7 +26,7 @@ Future addClass(String className) async {
 
   return await _classesData
       .doc()
-      .set({'className': className, 'classCode': classCode});
+      .set({'name': className, 'code': classCode});
 }
 
 // Creates a 4 digit class code based each digit having a value of [0-9]
@@ -53,7 +53,18 @@ Map<String, dynamic> getData() {
   return _data;
 }
 
-Future<List> getClasses() async {
-  QuerySnapshot querySnapshot = await _classesData.get();
-  return querySnapshot.docs.map((doc) => doc.data()).toList();
+Future getClasses() async {
+  List classes = [];
+
+  try {
+    await _classesData.get().then((querySnapshot) {
+      querySnapshot.docs.forEach((element) {
+        classes.add(element.data());
+      });
+    });
+    return classes;
+  } catch (e) {
+    print(e.toString());
+    return classes;
+  }
 }
