@@ -66,13 +66,13 @@ class TeacherClassesScreen extends StatelessWidget {
           Navigator.of(context).push(AddClassDialogRoute(
               builder: (context) {
                 _ViewClassPopupCard card = new _ViewClassPopupCard();
-                card.setId(getClassesData()![code]!['code']);
+                card.setId(getClassesData()![code]!.id);
                 return card;
               }
           ))
         },
         child: Text(
-          getClassesData()![code]!['name'],
+          (getClassesData()![code])!.data()['name'],
           style: TextStyle(
             fontSize: 20.0,
             color: Colors.black,
@@ -136,52 +136,6 @@ class _ViewClassPopupCard extends StatelessWidget {
                       },
                       child: const Text('Delete Class'),
                     ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-const String _heroConfirmAction = 'confirm-action-hero';
-
-class _ConfirmActionPopupCard extends StatelessWidget {
-  _ConfirmActionPopupCard({Key? key}) :
-        super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(32.0),
-        child: Hero(
-          tag: _heroConfirmAction,
-          createRectTween: (begin, end) {
-            return RectTween(begin: begin, end: end);
-          },
-          child: Material(
-            color: Colors.white,
-            elevation: 2,
-            shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(26.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    TextButton(
-                      onPressed: () { },
-                      child: const Text('Action successfully completed!'),
-                    ),
-                    const Divider(
-                      color: Colors.black,
-                      thickness: 0.2,
-                    )
                   ],
                 ),
               ),

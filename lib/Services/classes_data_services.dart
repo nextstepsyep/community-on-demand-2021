@@ -8,7 +8,7 @@ final CollectionReference _classesData =
 FirebaseFirestore.instance.collection("classes");
 
 Map<String, dynamic> _data = Map();
-Map<int, Map<String, dynamic>>? _classes; //key: classCode, value: classDocument
+Map<int, QueryDocumentSnapshot>? _classes; //key: classCode, value: classDocument
 Map<int, String> _classIDs = new Map(); //key: classCode, value: documentID
 Stream<QuerySnapshot>? _stream;
 
@@ -21,7 +21,7 @@ StreamSubscription<QuerySnapshot> initClassesStream() {
     _classes = new Map();
     List<QueryDocumentSnapshot> list = event.docs;
     list.forEach((element) {
-      _classes!.putIfAbsent(element.data()['code'], () => element.data());
+      _classes!.putIfAbsent(element.data()['code'], () => element);
       _classIDs.putIfAbsent(element.data()['code'], () => element.id);
     });
     print(_classes);
@@ -37,11 +37,10 @@ void switchClass(String id) {
 Future addClass(String className) async {
   QuerySnapshot querySnapshot = await _classesData.get();
   final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-  String classCode = hash(allData.length);
 
   return await _classesData
       .doc()
-      .set({'name': className, 'code': classCode});
+      .set({'name': className, 'code': allData.length});
 }
 
 // Creates a 4 digit class code based each digit having a value of [0-9]
@@ -80,7 +79,7 @@ void updateCurrentClass() {
 
 }
 
-Map<int, Map<String, dynamic>>? getClassesData() {
+Map<int, QueryDocumentSnapshot>? getClassesData() {
   return _classes;
 }
 
