@@ -1,21 +1,36 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
 
 String _classId = "";
 final CollectionReference _classesData =
 FirebaseFirestore.instance.collection("classes");
-Stream<DocumentSnapshot> _stream = _classesData.doc(_classId).snapshots();
+
 Map<String, dynamic> _data = Map();
+Map<int, Map<String, dynamic>>? _classes; //key: classCode, value: classDocument
+Map<int, String> _classIDs = new Map(); //key: classCode, value: documentID
+Stream<QuerySnapshot>? _stream;
 
 // A collection of classes is in the context of one teacher.
 // Furthermore, one teacher's collection of classes will differ from another teacher's.
+StreamSubscription<QuerySnapshot> initClassesStream() {
+  //already called on main.dart
+  _stream = _classesData.snapshots().asBroadcastStream();
+  return _stream!.listen((event) {
+    _classes = new Map();
+    List<QueryDocumentSnapshot> list = event.docs;
+    list.forEach((element) {
+      _classes!.putIfAbsent(element.data()['code'], () => element.data());
+      _classIDs.putIfAbsent(element.data()['code'], () => element.id);
+    });
+    print(_classes);
+  });
+}
 
 // Used for switching classes.
 void switchClass(String id) {
   _classId = id;
-  _stream = _classesData.doc(_classId).snapshots();
-  _stream.listen((event) => _data = event.data() as Map<String, dynamic>,
-      onError: (e) => print('could not load data'));
 }
 
 // Keep a separate doc for each array of classes to quickly find out size of array.
@@ -56,14 +71,21 @@ Map<String, dynamic> getData() {
 void deleteClass(String id) {
   // Deletes class document w/ specified id. Since students are contained in a map
   // and not a sub-collection, nested deletion is not necessary.
-
   _classesData.doc(id).get().then((snapshot) {
     snapshot.reference.delete();
   });
 }
 
-updateCurrentClass() {
+void updateCurrentClass() {
 
+}
+
+Map<int, Map<String, dynamic>>? getClassesData() {
+  return _classes;
+}
+
+Stream<QuerySnapshot>? getClassesStream() {
+  return _stream;
 }
 
 Future getClasses() async {
