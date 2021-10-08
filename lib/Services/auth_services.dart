@@ -27,8 +27,13 @@ Future<UserCredential> signUp(email, password, accountType) async {
         .createUserWithEmailAndPassword(email: email, password: password);
     setUID(user.user!.uid);
     // After updateProfile, user is added to users collection
-    updateProfile('firstName', 'lastName', 'bio', accountType);
+    if (accountType == "Administrator") {
+      updateAdminProfile('firstName', 'lastName', 'bio');
+    } else {
+      updateProfile('firstName', 'lastName', 'bio');
+    }
 
+    // Update the list of teachers to add the new account
     if (accountType == "Administrator") {
       _userData.doc("teachers").update({'users': FieldValue.arrayUnion([_userData.doc(user.user!.uid)])});
     }

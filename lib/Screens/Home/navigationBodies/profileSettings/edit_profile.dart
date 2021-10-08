@@ -113,7 +113,7 @@ class EditProfile extends StatelessWidget {
                     RaisedButton(
                       onPressed: () {
                         updateProfile(firstNameController.text,
-                            lastNameController.text, bioController.text, "User");
+                            lastNameController.text, bioController.text);
                       },
                       color: Colors.blue,
                       padding: EdgeInsets.symmetric(horizontal: 65),

@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-String _classId = "";
+final CollectionReference _userData =
+FirebaseFirestore.instance.collection("users");
+
 final CollectionReference _classesData =
 FirebaseFirestore.instance.collection("classes");
 
@@ -28,9 +31,24 @@ StreamSubscription<QuerySnapshot> initClassesStream() {
   });
 }
 
-// Used for switching classes.
-void switchClass(String id) {
-  _classId = id;
+// Used for switching classes. Pass in doc id of the class.
+Future<void> switchClass(String id) async {
+  User? user = FirebaseAuth.instance.currentUser;
+  String nextClass = "";
+  await _classesData.doc(id).get().then((snapshot) {
+    nextClass = snapshot.data()!['name'].toString();
+  });
+  _userData.doc(user!.uid).update({'currentClass' : nextClass});
+}
+
+Future<String> getCurrentClass() async {
+  User? user = FirebaseAuth.instance.currentUser;
+
+  String ret = "";
+  await _userData.doc(user!.uid).get().then((snapshot) {
+    ret = snapshot.data()!['currentClass'].toString();
+  });
+  return ret;
 }
 
 // Keep a separate doc for each array of classes to quickly find out size of array.
@@ -73,10 +91,6 @@ void deleteClass(String id) {
   _classesData.doc(id).get().then((snapshot) {
     snapshot.reference.delete();
   });
-}
-
-void updateCurrentClass() {
-
 }
 
 Map<int, QueryDocumentSnapshot>? getClassesData() {

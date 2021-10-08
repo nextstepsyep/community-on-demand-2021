@@ -28,8 +28,7 @@ class TeacherClassesScreen extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Text(
-                  // TODO: Teacher document needs a current class field.
-                  'Current Class: ' + currentClass,
+                  'Current Class: ' + getClass(),
                   style: TextStyle(
                     fontFamily: 'Cookie',
                     fontSize: screenWidth * 0.1,
@@ -49,6 +48,13 @@ class TeacherClassesScreen extends StatelessWidget {
     );
   }
 
+  String getClass() {
+    String s = "";
+    getCurrentClass().then((value) {
+      s = value;
+    });
+    return s;
+  }
   List<Widget> listOfWidgets(BuildContext context, double screenWidth) {
     List<Widget> list = <Widget>[];
     getClassesData()!.forEach((key, value) {
@@ -119,8 +125,7 @@ class _ViewClassPopupCard extends StatelessWidget {
                   children: [
                     TextButton(
                       onPressed: () {
-                        // TODO: Implement in database.
-                        updateCurrentClass();
+                        switchClass(id);
                         Navigator.of(context, rootNavigator: true).pop();
                       },
                       child: const Text('Switch to this Class'),
