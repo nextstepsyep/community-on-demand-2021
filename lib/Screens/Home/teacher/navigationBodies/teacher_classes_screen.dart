@@ -27,12 +27,17 @@ class TeacherClassesScreen extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: <Widget>[
-                Text(
-                  'Current Class: ' + getClass(),
-                  style: TextStyle(
-                    fontFamily: 'Cookie',
-                    fontSize: screenWidth * 0.1,
-                  ),
+                StreamBuilder<DocumentSnapshot>(
+                  stream: getDocStream(),
+                  builder: (context, snapshot) {
+                    return Text(
+                      'Current Class: ' + getClass(),
+                      style: TextStyle(
+                        fontFamily: 'Cookie',
+                        fontSize: screenWidth * 0.1,
+                      ),
+                    );
+                  }
                 ),
                 SizedBox(height: 10),
                 SingleChildScrollView(
@@ -48,13 +53,6 @@ class TeacherClassesScreen extends StatelessWidget {
     );
   }
 
-  String getClass() {
-    String s = "";
-    getCurrentClass().then((value) {
-      s = value;
-    });
-    return s;
-  }
   List<Widget> listOfWidgets(BuildContext context, double screenWidth) {
     List<Widget> list = <Widget>[];
     getClassesData()!.forEach((key, value) {

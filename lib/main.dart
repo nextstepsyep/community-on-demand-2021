@@ -9,6 +9,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   initClassesStream();
+  initCurrentClassStream();
   return runApp(
     MaterialApp(
       home: Scaffold(

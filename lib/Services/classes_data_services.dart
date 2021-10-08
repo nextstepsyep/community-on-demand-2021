@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+String currentClass = "";
 final CollectionReference _userData =
 FirebaseFirestore.instance.collection("users");
 
@@ -14,6 +15,7 @@ Map<String, dynamic> _data = Map();
 Map<int, QueryDocumentSnapshot>? _classes; //key: classCode, value: classDocument
 Map<int, String> _classIDs = new Map(); //key: classCode, value: documentID
 Stream<QuerySnapshot>? _stream;
+Stream<DocumentSnapshot>? _docStream;
 
 // A collection of classes is in the context of one teacher.
 // Furthermore, one teacher's collection of classes will differ from another teacher's.
@@ -31,6 +33,15 @@ StreamSubscription<QuerySnapshot> initClassesStream() {
   });
 }
 
+StreamSubscription<DocumentSnapshot> initCurrentClassStream() {
+  User? user = FirebaseAuth.instance.currentUser;
+  //already called on main.dart
+  _docStream = _userData.doc(user!.uid).snapshots().asBroadcastStream();
+  return _docStream!.listen((event) {
+    currentClass = event.data()!['currentClass'];
+  });
+}
+
 // Used for switching classes. Pass in doc id of the class.
 Future<void> switchClass(String id) async {
   User? user = FirebaseAuth.instance.currentUser;
@@ -39,16 +50,11 @@ Future<void> switchClass(String id) async {
     nextClass = snapshot.data()!['name'].toString();
   });
   _userData.doc(user!.uid).update({'currentClass' : nextClass});
+  currentClass = nextClass;
 }
 
-Future<String> getCurrentClass() async {
-  User? user = FirebaseAuth.instance.currentUser;
-
-  String ret = "";
-  await _userData.doc(user!.uid).get().then((snapshot) {
-    ret = snapshot.data()!['currentClass'].toString();
-  });
-  return ret;
+String getClass() {
+  return currentClass;
 }
 
 // Keep a separate doc for each array of classes to quickly find out size of array.
@@ -99,6 +105,10 @@ Map<int, QueryDocumentSnapshot>? getClassesData() {
 
 Stream<QuerySnapshot>? getClassesStream() {
   return _stream;
+}
+
+Stream<DocumentSnapshot>? getDocStream() {
+  return _docStream;
 }
 
 Future getClasses() async {
