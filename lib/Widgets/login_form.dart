@@ -157,17 +157,26 @@ class _LoginFormState extends State<LoginForm> {
               if (_formKey.currentState!.validate()) {
                 UserCredential user = await signIn(
                     _emailController.text, _passwordController.text);
-                Navigator.push(
-                    context,
-                    new MaterialPageRoute(
-                      builder: (context) => new TeacherHomeScreen()));
-                  } else {
-                    print("Not validated");
-                  }
-                },
-              ),
-            ],
-        ),
-      );
-    }
+                String type = await getUserType(user.user!.uid);
+
+                if (type == "Administrator") {
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new TeacherHomeScreen()));
+                } else {
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new HomeScreen()));
+                }
+              } else {
+                print("Not validated");
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
+}

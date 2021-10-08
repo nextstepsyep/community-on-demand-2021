@@ -12,6 +12,7 @@ class CreateAccountForm extends StatefulWidget {
 }
 
 class _CreateAccountFormState extends State<CreateAccountForm> {
+  String accountType = "";
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -74,15 +75,42 @@ class _CreateAccountFormState extends State<CreateAccountForm> {
               }
             ),
           ),
+          CustomFormLabel(labelText: "Choose account type:"),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AppButton(
+                buttonText: "Administrator",
+                onPressed:() {
+                  accountType = "Administrator";
+                }
+              ),
+              SizedBox(width: 15),
+              AppButton(
+                buttonText: "User",
+                onPressed:() {
+                  accountType = "User";
+                }
+              )
+            ]
+          ),
+          SizedBox(height: 10),
           AppButton(
             buttonText: "Create Account",
             onPressed: () async {
-              if (_formKey.currentState!.validate()) {
-                await signUp(_emailController.text, _passwordController.text);
-                Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                    builder: (context) => new TeacherHomeScreen()));
+              if (_formKey.currentState!.validate() || accountType != ("")) {
+                await signUp(_emailController.text, _passwordController.text, accountType);
+                if (accountType == "Administrator") {
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new TeacherHomeScreen()));
+                } else {
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => new HomeScreen()));
+                }
               } else {
                 print("Not validated");
               }

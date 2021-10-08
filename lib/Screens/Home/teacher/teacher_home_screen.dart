@@ -23,12 +23,12 @@ class NavigationScreen extends StatefulWidget {
 /// This is the private State class that goes with MyStatefulWidget.
 class _NavigationState extends State<NavigationScreen> {
   int _selectedIndex = 0;
-  static List _navigationBodies =[
-    new TeacherClassesScreen(),
+  static List<Widget> _navigationBodies =[
+    TeacherClassesScreen(),
     Container(),
     Container(),
     Container(),
-    TeacherProfile()
+    TeacherProfileScreen()
   ];
   static const Color barColor = Colors.white;
   static const TextStyle optionStyle = TextStyle(
@@ -40,12 +40,6 @@ class _NavigationState extends State<NavigationScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
-    });
-  }
-
-  void refresh() {
-    setState(() {
-      _navigationBodies[0].fetchData();
     });
   }
 
@@ -68,7 +62,7 @@ class _NavigationState extends State<NavigationScreen> {
               onPressed: () {
                 Navigator.of(context).push(AddClassDialogRoute(
                     builder: (context) {
-                      return _AddClassPopupCard(notifyParent: refresh);
+                      return _AddClassPopupCard();
                     }
                 ));
               },
@@ -146,8 +140,7 @@ class _NavigationState extends State<NavigationScreen> {
 const String _heroAddClass = 'add-class-hero';
 
 class _AddClassPopupCard extends StatelessWidget {
-   Function() notifyParent;
-  _AddClassPopupCard({Key? key, required this.notifyParent}) : super(key: key);
+  _AddClassPopupCard({Key? key}) : super(key: key);
 
   final TextEditingController classNameController =
   TextEditingController(text: getData()['className']);

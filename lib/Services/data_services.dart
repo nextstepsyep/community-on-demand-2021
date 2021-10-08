@@ -12,10 +12,10 @@ void setUID(String uid) {
       onError: (e) => print('could not load data'));
 }
 
-Future updateProfile(String firstName, String lastName, String bio) async {
+Future updateProfile(String firstName, String lastName, String bio, String accountType) async {
   return await _userData
       .doc(_uid)
-      .set({'firstName': firstName, 'lastName': lastName, 'bio': bio});
+      .set({'firstName': firstName, 'lastName': lastName, 'bio': bio, 'accountType' : accountType});
 }
 
 Map<String, dynamic> getData() {
