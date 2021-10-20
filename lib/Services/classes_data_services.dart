@@ -8,7 +8,7 @@ String currentClass = "";
 final CollectionReference _userData =
 FirebaseFirestore.instance.collection("users");
 
-final CollectionReference _classesData =
+final CollectionReference _classData =
 FirebaseFirestore.instance.collection("classes");
 
 Map<String, dynamic> _data = Map();
@@ -21,7 +21,7 @@ Stream<DocumentSnapshot>? _docStream;
 // Furthermore, one teacher's collection of classes will differ from another teacher's.
 StreamSubscription<QuerySnapshot> initClassesStream() {
   //already called on main.dart
-  _stream = _classesData.snapshots().asBroadcastStream();
+  _stream = _classData.snapshots().asBroadcastStream();
   return _stream!.listen((event) {
     _classes = new Map();
     List<QueryDocumentSnapshot> list = event.docs;
@@ -46,7 +46,7 @@ StreamSubscription<DocumentSnapshot> initCurrentClassStream() {
 Future<void> switchClass(String id) async {
   User? user = FirebaseAuth.instance.currentUser;
   String nextClass = "";
-  await _classesData.doc(id).get().then((snapshot) {
+  await _classData.doc(id).get().then((snapshot) {
     nextClass = snapshot.data()!['name'].toString();
   });
   _userData.doc(user!.uid).update({'currentClass' : nextClass});
@@ -59,10 +59,10 @@ String getClass() {
 
 // Keep a separate doc for each array of classes to quickly find out size of array.
 Future addClass(String className) async {
-  QuerySnapshot querySnapshot = await _classesData.get();
+  QuerySnapshot querySnapshot = await _classData.get();
   final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
 
-  return await _classesData
+  return await _classData
       .doc()
       .set({'name': className, 'code': allData.length});
 }
@@ -81,7 +81,7 @@ String hash(int numClasses) {
 }
 
 Future addStudent(String classId, String studentId) async {
-  return await _classesData
+  return await _classData
       .doc(classId)
       .collection('students')
       .add({'uid': studentId});
@@ -94,7 +94,7 @@ Map<String, dynamic> getData() {
 void deleteClass(String id) {
   // Deletes class document w/ specified id. Since students are contained in a map
   // and not a sub-collection, nested deletion is not necessary.
-  _classesData.doc(id).get().then((snapshot) {
+  _classData.doc(id).get().then((snapshot) {
     snapshot.reference.delete();
   });
 }
@@ -115,7 +115,7 @@ Future getClasses() async {
   List classes = [];
 
   try {
-    await _classesData.get().then((querySnapshot) {
+    await _classData.get().then((querySnapshot) {
       querySnapshot.docs.forEach((element) {
         classes.add(element);
       });

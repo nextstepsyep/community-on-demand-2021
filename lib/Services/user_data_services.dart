@@ -1,14 +1,17 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 String _uid = "";
 final CollectionReference _userData =
     FirebaseFirestore.instance.collection("users");
-Stream<DocumentSnapshot> _stream = _userData.doc(_uid).snapshots();
-Map<String, dynamic> _data = Map();
-void setUID(String uid) {
+Stream<DocumentSnapshot>? _stream;
+Map<String, dynamic>? _data;
+
+StreamSubscription<DocumentSnapshot> setUID(String uid) {
   _uid = uid;
-  _stream = _userData.doc(_uid).snapshots();
-  _stream.listen((event) => _data = event.data() as Map<String, dynamic>,
+  _stream = _userData.doc(_uid).snapshots().asBroadcastStream();
+  return _stream!.listen((event) => _data = event.data(),
       onError: (e) => print('could not load data'));
 }
 
@@ -24,6 +27,10 @@ Future updateAdminProfile(String firstName, String lastName, String bio) async {
       .set({'firstName': firstName, 'lastName': lastName, 'bio': bio, 'accountType' : "Administrator", 'currentClass' : ""});
 }
 
-Map<String, dynamic> getData() {
-  return _data;
+Map<String, dynamic> getUserData() {
+  return _data!;
+}
+
+Stream<DocumentSnapshot> getUserStream() {
+  return _stream!;
 }
