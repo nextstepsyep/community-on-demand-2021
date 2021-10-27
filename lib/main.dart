@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
 
+import 'Services/classes_data_services.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  initClassesStream();
   return runApp(
     MaterialApp(
       home: Scaffold(
