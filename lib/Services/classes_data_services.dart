@@ -49,7 +49,10 @@ void joinClass(int classCode) {
 
 void leaveClass(int classCode) {
   String uid = getUserID();
-  _classes![classCode]!['students'].removeWhere((key, value) => key == uid);
+  _classData
+      .doc(_classIDs[classCode])
+      .update({'students.$uid': FieldValue.delete()});
+  // _classes![classCode]!['students'].removeWhere((key, value) => key == uid);
 }
 
 bool studentInClass(int classCode) {
