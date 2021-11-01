@@ -1,4 +1,4 @@
-import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
+import 'package:community_on_demand_code_demo/Services/data_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -9,11 +9,11 @@ class EditProfile extends StatelessWidget {
   static const double paddingHeight = 20;
   static const Color barColor = Colors.white;
   final TextEditingController firstNameController =
-      TextEditingController(text: getUserData()['firstName']);
+      TextEditingController(text: getData()['firstName']);
   final TextEditingController lastNameController =
-      TextEditingController(text: getUserData()['lastName']);
+      TextEditingController(text: getData()['lastName']);
   final TextEditingController bioController =
-      TextEditingController(text: getUserData()['bio']);
+      TextEditingController(text: getData()['bio']);
   static const TextStyle optionStyle = TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
@@ -114,7 +114,6 @@ class EditProfile extends StatelessWidget {
                       onPressed: () {
                         updateProfile(firstNameController.text,
                             lastNameController.text, bioController.text);
-                        Navigator.of(context).pop();
                       },
                       color: Colors.blue,
                       padding: EdgeInsets.symmetric(horizontal: 65),

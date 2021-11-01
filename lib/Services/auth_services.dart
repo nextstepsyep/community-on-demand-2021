@@ -1,13 +1,12 @@
-import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 
-import 'user_data_services.dart';
+import 'data_services.dart';
 
 final CollectionReference _userData =
 FirebaseFirestore.instance.collection("users");
-StreamSubscription<DocumentSnapshot>? _userStream;
+
 Future<void> checkAuth() async {
   try {
     User? user = FirebaseAuth.instance.currentUser;
@@ -26,7 +25,7 @@ Future<UserCredential> signUp(email, password, accountType) async {
   try {
     UserCredential user = await FirebaseAuth.instance
         .createUserWithEmailAndPassword(email: email, password: password);
-    _userStream = setUID(user.user!.uid);
+    setUID(user.user!.uid);
     // After updateProfile, user is added to users collection
     if (accountType == "Administrator") {
       updateAdminProfile('firstName', 'lastName', 'bio');
@@ -38,7 +37,6 @@ Future<UserCredential> signUp(email, password, accountType) async {
     if (accountType == "Administrator") {
       _userData.doc("teachers").update({'users': FieldValue.arrayUnion([_userData.doc(user.user!.uid)])});
     }
-
     return user;
   } catch (e) {
     print(e);
@@ -50,8 +48,6 @@ Future<UserCredential> signUp(email, password, accountType) async {
 Future<String> getUserType(String uid) async {
   String ret = "";
   await _userData.doc(uid).get().then((snapshot) {
-    if (snapshot.data() == null)
-      return "";
     ret = snapshot.data()!['accountType'].toString();
   });
   return ret;
@@ -61,7 +57,7 @@ Future<UserCredential> signIn(email, password) async {
   try {
     UserCredential user = await FirebaseAuth.instance
         .signInWithEmailAndPassword(email: email, password: password);
-    _userStream = setUID(user.user!.uid);
+    setUID(user.user!.uid);
     return user;
   } catch (e) {
     print(e);
@@ -72,7 +68,7 @@ Future<UserCredential> signIn(email, password) async {
 Future<void> signOut() async {
   try {
     FirebaseAuth.instance.signOut();
-    _userStream!.cancel();
+    setUID('');
   } catch (e) {
     print(e);
   }
