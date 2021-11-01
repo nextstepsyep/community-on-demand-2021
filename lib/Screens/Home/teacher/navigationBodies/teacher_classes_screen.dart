@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/teacher/animations/add_class_dialog_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
+import 'package:community_on_demand_code_demo/Services/teacher_data_services.dart';
 
 class TeacherClassesScreen extends StatelessWidget {
   String currentClass = "";

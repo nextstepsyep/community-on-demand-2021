@@ -1,5 +1,5 @@
 import 'package:community_on_demand_code_demo/Screens/Home/teacher/navigationBodies/teacher_classes_screen.dart';
-import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
+import 'package:community_on_demand_code_demo/Services/teacher_data_services.dart';
 import 'package:flutter/material.dart';
 
 import '../teacher/navigationBodies/TeacherProfile.dart';
