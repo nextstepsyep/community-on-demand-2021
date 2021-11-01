@@ -19,7 +19,7 @@ Stream<DocumentSnapshot>? _docStream;
 
 // A collection of classes is in the context of one teacher.
 // Furthermore, one teacher's collection of classes will differ from another teacher's.
-StreamSubscription<QuerySnapshot> initClassesStream() {
+StreamSubscription<QuerySnapshot> initTeacherStream() {
   //already called on main.dart
   _stream = _classesData.snapshots().asBroadcastStream();
   return _stream!.listen((event) {
@@ -33,6 +33,14 @@ StreamSubscription<QuerySnapshot> initClassesStream() {
   });
 }
 
+StreamSubscription<DocumentSnapshot> initCurrentClassStream() {
+  User? user = FirebaseAuth.instance.currentUser;
+  //already called on main.dart
+  _docStream = _userData.doc(user!.uid).snapshots().asBroadcastStream();
+  return _docStream!.listen((event) {
+    currentClass = event.data()!['currentClass'];
+  });
+}
 
 // Used for switching classes. Pass in doc id of the class.
 Future<void> switchClass(String id) async {
