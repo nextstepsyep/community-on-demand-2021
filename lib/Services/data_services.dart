@@ -15,7 +15,13 @@ void setUID(String uid) {
 Future updateProfile(String firstName, String lastName, String bio) async {
   return await _userData
       .doc(_uid)
-      .set({'firstName': firstName, 'lastName': lastName, 'bio': bio});
+      .set({'firstName': firstName, 'lastName': lastName, 'bio': bio, 'accountType' : "User"});
+}
+
+Future updateAdminProfile(String firstName, String lastName, String bio) async {
+  return await _userData
+      .doc(_uid)
+      .set({'firstName': firstName, 'lastName': lastName, 'bio': bio, 'accountType' : "Administrator", 'currentClass' : ""});
 }
 
 Map<String, dynamic> getData() {
