@@ -1,3 +1,4 @@
+import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
 import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -69,52 +70,216 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(page.title, style: optionStyle),
       ),
-      body: new Center(
-          child: Column(
-              children: <Widget>[
-                SizedBox(height: paddingHeight),
-                listOfWidgets(context, screenWidth)
-              ]
-          )
+      body: Container (
+        child: Column (
+          children: [
+            Center(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    height: 200,
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    padding: EdgeInsets.only(bottom: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Color.fromARGB(255, 51, 204, 255), width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                      shape: BoxShape.rectangle,
+                    ),
+                    // child: ""
+                  ),
+                  Positioned(
+                      left: 50,
+                      top: 12,
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                        color: Colors.white,
+                        child: Text(
+                          'Description',
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        ),
+                      )),
+                  Positioned(
+                      left: 30,
+                      top: 30,
+                      right: 40,
+                      bottom: 20,
+                      child: Container(
+                          padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                          color: Colors.white,
+                          child: SingleChildScrollView(
+                            child: Text(
+                              "BCH CHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCH" ,
+                              style: TextStyle(color: Colors.black, fontSize: 12),
+                            ),
+                          )
+                      )),
+                ],
+              ),
+            ),
+            Center(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    height: 100,
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    padding: EdgeInsets.only(bottom: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Color.fromARGB(255, 51, 204, 255), width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                      shape: BoxShape.rectangle,
+                    ),
+                    // child: ""
+                  ),
+                  Positioned(
+                      left: 50,
+                      top: 12,
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                        color: Colors.white,
+                        child: Text(
+                          'Members',
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        ),
+                      )),
+                  Positioned(
+                      left: 30,
+                      top: 30,
+                      right: 40,
+                      bottom: 20,
+                      child: Container(
+                          padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                          color: Colors.white,
+                          child: SingleChildScrollView(
+                            child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: paddingHeight / 2),
+                                  listOfWidgets(page.members)
+                                ]
+                            )
+                          )
+                      )),
+                ],
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(screenWidth - screenWidth / 3, 40),
+                primary: Colors.yellow,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                side: BorderSide(color: Colors.grey, width: 1),
+              ),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        AlertMenu(
+                          title: "Confirmation to join",
+                          content: "Join " + page.title + "?",
+                          actions: [
+                            FlatButton(
+                              color: Colors.white,
+                              textColor: Colors.black,
+                              child: Text('Cancel'),
+                              onPressed: () {
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                              },
+                            ),
+                            FlatButton(
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              child: Text('Join'),
+                              onPressed: () {
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                              },
+                            ),
+                          ],
+                        ));
+              },
+              child: Text(
+                "Join Project",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(screenWidth - screenWidth / 3, 40),
+                primary: Colors.deepOrangeAccent,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                side: BorderSide(color: Colors.grey, width: 1),
+              ),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) =>
+                        AlertMenu(
+                          title: "Confirmation to join",
+                          content: "Join " + page.title + "?",
+                          actions: [
+                            FlatButton(
+                              color: Colors.white,
+                              textColor: Colors.black,
+                              child: Text('Cancel'),
+                              onPressed: () {
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                              },
+                            ),
+                            FlatButton(
+                              color: Colors.blue,
+                              textColor: Colors.white,
+                              child: Text('Join'),
+                              onPressed: () {
+                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                              },
+                            ),
+                          ],
+                        ));
+              },
+              child: Text(
+                "Request Feedback",
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.black,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
       backgroundColor: Colors.white,
     );
   }
 
-  Widget listOfWidgets(BuildContext context, double screenWidth) {
-    List<Widget> list = <Widget>[];
-    getClassesData()!.forEach((key, value) {
-      int code = key;
-      if (!studentInClass(code)) {
-        list.add(
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              minimumSize: Size(screenWidth - 30, 70),
-              primary: Colors.lightGreenAccent,
-              elevation: 0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              side: BorderSide(color: Colors.grey, width: 1),
-            ),
-            onPressed: () {
-              String z = "";
-            },
-            child: Text(
-              "Bleh",
-              style: TextStyle(
-                fontSize: 20.0,
-                color: Colors.black,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-        );
-      }});
+  Widget listOfWidgets(List<String> members) {
+    List<Text> member_display = <Text>[];
+    for (int i = 0; i < members.length; i++) {
+      member_display.add(
+        Text(
+          members[i],
+          style: TextStyle(color: Colors.black, fontSize: 12),
+        ),
+      );
+    }
     return Wrap(
         spacing: 20.0, // gap between adjacent chips
         runSpacing: 20.0, // gap between lines
-        children: list
+        children: member_display
     );
   }
+
+
 }

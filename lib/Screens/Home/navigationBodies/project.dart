@@ -41,7 +41,7 @@ class ProjectScreen extends StatelessWidget {
 
   Widget listOfWidgets(BuildContext context, double screenWidth) {
     List<Widget> list = <Widget>[];
-    List<String> temp = <String>["hello", "bye"];
+    List<String> member = <String>["R1", "Ash Ketchum","Brock", "Natsu","Gon Freed", "Yayo"];
     getClassesData()!.forEach((key, value) {
       int code = key;
       if (!studentInClass(code)) {
@@ -60,7 +60,7 @@ class ProjectScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(code), getCode(code), temp)),
+                  builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(code), getCode(code), member)),
                 ),
               );
             },
