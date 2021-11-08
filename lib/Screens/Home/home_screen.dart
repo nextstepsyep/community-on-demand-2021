@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'navigationBodies/Profile.dart';
+import 'navigationBodies/project.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -21,8 +22,7 @@ class NavigationScreen extends StatefulWidget {
 class _NavigationState extends State<NavigationScreen> {
   int _selectedIndex = 0;
   static List<Widget> _navigationBodies = <Widget>[
-    Container(),
-    Container(),
+    ProjectScreen(),
     Container(),
     Container(),
     ProfileScreen()
@@ -36,10 +36,6 @@ class _NavigationState extends State<NavigationScreen> {
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'Projects',
-      style: optionStyle,
-    ),
-    Text(
-      'Teams',
       style: optionStyle,
     ),
     Text(
@@ -79,11 +75,6 @@ class _NavigationState extends State<NavigationScreen> {
             icon: Icon(Icons.assignment_outlined),
             label: 'Projects',
             backgroundColor: Colors.red,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.group),
-            label: 'Teams',
-            backgroundColor: Colors.black,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.feedback),
