@@ -25,6 +25,7 @@ class _NavigationState extends State<NavigationScreen> {
     ProjectScreen(),
     Container(),
     Container(),
+    Container(),
     ProfileScreen()
   ];
   static const Color barColor = Colors.white;
