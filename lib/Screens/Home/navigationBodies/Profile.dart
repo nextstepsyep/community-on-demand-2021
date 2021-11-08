@@ -1,16 +1,13 @@
-//import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/badges_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profile_settings.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/view_reports_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
-import 'package:community_on_demand_code_demo/Services/data_services.dart';
+import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../home_screen.dart';
 import 'classes_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -29,14 +26,14 @@ class Profile extends State<ProfileScreen> {
       child: Column(
         children: <Widget>[
           Text(
-            "${getData()['firstName']} ${getData()['lastName']}",
+            "${getUserData()['firstName']} ${getUserData()['lastName']}",
             style: TextStyle(
               fontFamily: 'Cookie',
               fontSize: screenWidth * 0.1,
             ),
           ),
           Text(
-            getData()['bio'],
+            getUserData()['bio'],
             style: TextStyle(
               fontFamily: 'Cookie',
               fontSize: screenWidth * 0.1,
