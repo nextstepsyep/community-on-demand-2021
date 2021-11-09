@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/teacher/animations/add_class_dialog_route.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/teacher/animations/dialog_animation_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:community_on_demand_code_demo/Services/teacher_data_services.dart';
@@ -67,7 +67,7 @@ class TeacherClassesScreen extends StatelessWidget {
         ),
         onPressed: () =>
         {
-          Navigator.of(context).push(AddClassDialogRoute(
+          Navigator.of(context).push(DialogAnimationRoute(
               builder: (context) {
                 _ViewClassPopupCard card = new _ViewClassPopupCard();
                 card.setId(getClassesData()![code]!.id);

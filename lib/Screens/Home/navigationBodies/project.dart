@@ -1,10 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profileSettings/edit_account_info.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profileSettings/edit_profile.dart';
-import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/profileSettings/notification_settings.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/project_details.dart';
-import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
+import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +20,7 @@ class ProjectScreen extends StatelessWidget {
         .size
         .width;
     return StreamBuilder<QuerySnapshot>(
-        stream: getClassesStream(),
+        stream: getProjectStream(),
         builder: (context, snapshot) {
           return Scaffold(
               body: new Center(
@@ -42,9 +38,9 @@ class ProjectScreen extends StatelessWidget {
   Widget listOfWidgets(BuildContext context, double screenWidth) {
     List<Widget> list = <Widget>[];
     List<String> member = <String>["R1", "Ash Ketchum","Brock", "Natsu","Gon Freed", "Yayo"];
-    getClassesData()!.forEach((key, value) {
-      int code = key;
-      if (!studentInClass(code)) {
+    getProjectsData()!.forEach((key, value) {
+      String id = key;
+      if (!studentInProject(id)) {
         list.add(
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -60,12 +56,12 @@ class ProjectScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(code), getCode(code), member)),
+                  builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(id), "", member)),
                 ),
               );
             },
             child: Text(
-              joinClassButtonText(code),
+              getName(id),
               style: TextStyle(
                 fontSize: 20.0,
                 color: Colors.black,
@@ -82,19 +78,7 @@ class ProjectScreen extends StatelessWidget {
     );
   }
 
-  String joinClassButtonText(int code) {
-    return (
-        "${getClassesData()![code]!['name']}\n" +
-            "Class Code: " +
-            "(" + "${getClassesData()![code]!['code']}" + ")"
-    );
-  }
-
-  String getName(int code) {
-    return "${getClassesData()![code]!['name']}";
-  }
-
-  String getCode(int code) {
-    return "${getClassesData()![code]!['code']}";
+  String getName(String id) {
+    return "${getProjectsData()![id]!['name']}";
   }
 }

@@ -1,7 +1,10 @@
+import 'package:community_on_demand_code_demo/Screens/Home/teacher/animations/dialog_animation_route.dart';
 import 'package:flutter/material.dart';
 
 import 'navigationBodies/Profile.dart';
 import 'navigationBodies/project.dart';
+import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
+
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -34,24 +37,6 @@ class _NavigationState extends State<NavigationScreen> {
       fontWeight: FontWeight.bold,
       color: Colors.black,
       fontFamily: 'Cookie');
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'Projects',
-      style: optionStyle,
-    ),
-    Text(
-      'Feedback',
-      style: optionStyle,
-    ),
-    Text(
-      'Requests',
-      style: optionStyle,
-    ),
-    Text(
-      'Profile',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -61,6 +46,48 @@ class _NavigationState extends State<NavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<Widget> _widgetOptions = <Widget>[
+      Row(
+        children: <Widget>[
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 0.0),
+              child: Text(
+                "Projects",
+                style: optionStyle,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+          FloatingActionButton(
+              onPressed: () {
+                Navigator.of(context).push(DialogAnimationRoute(
+                    builder: (context) {
+                      return _AddProjectPopupCard();
+                    }
+                ));
+              },
+              child: const Icon(
+                  Icons.add,
+                  color: Colors.black
+              ),
+              backgroundColor: Colors.white
+          )
+        ],
+      ),
+      Text(
+        'Feedback',
+        style: optionStyle,
+      ),
+      Text(
+        'Requests',
+        style: optionStyle,
+      ),
+      Text(
+        'Profile',
+        style: optionStyle,
+      ),
+    ];
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -95,6 +122,75 @@ class _NavigationState extends State<NavigationScreen> {
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
+      ),
+    );
+  }
+}
+
+/// Tag-value used for the add projects popup button.
+const String _heroAddClass = 'add-project-hero';
+
+class _AddProjectPopupCard extends StatelessWidget {
+  _AddProjectPopupCard({Key? key}) : super(key: key);
+
+  final TextEditingController projectNameController =
+  TextEditingController(text: getData()['projectName']);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Hero(
+          tag: _heroAddClass,
+          createRectTween: (begin, end) {
+            return RectTween(begin: begin, end: end);
+          },
+          child: Material(
+            color: Colors.white,
+            elevation: 2,
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(32)),
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(26.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    buildTextField("Enter your project's name", 1, 1, projectNameController),
+                    SizedBox(height: 20),
+                    const Divider(
+                      color: Colors.black,
+                      thickness: 0.2,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        addProject(projectNameController.text);
+                        Navigator.of(context, rootNavigator: true).pop();
+                      },
+                      child: const Text('Create Project'),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  TextField buildTextField(String labelText, int minLines, int maxLines,
+      TextEditingController controller) {
+    return TextField(
+      textAlignVertical: TextAlignVertical.top,
+      minLines: minLines,
+      maxLines: maxLines,
+      controller: controller,
+      decoration: InputDecoration(
+        border: OutlineInputBorder(),
+        labelText: labelText,
+        floatingLabelBehavior: FloatingLabelBehavior.always,
       ),
     );
   }

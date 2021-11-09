@@ -3,7 +3,7 @@ import 'package:community_on_demand_code_demo/Services/teacher_data_services.dar
 import 'package:flutter/material.dart';
 
 import '../teacher/navigationBodies/TeacherProfile.dart';
-import 'animations/add_class_dialog_route.dart';
+import 'animations/dialog_animation_route.dart';
 
 class TeacherHomeScreen extends StatelessWidget {
   @override
@@ -60,7 +60,7 @@ class _NavigationState extends State<NavigationScreen> {
           ),
           FloatingActionButton(
               onPressed: () {
-                Navigator.of(context).push(AddClassDialogRoute(
+                Navigator.of(context).push(DialogAnimationRoute(
                     builder: (context) {
                       return _AddClassPopupCard();
                     }

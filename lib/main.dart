@@ -1,4 +1,5 @@
 import 'package:community_on_demand_code_demo/Screens/Login/login_screen.dart';
+import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -11,6 +12,7 @@ void main() async {
   initClassesStream();
   initTeacherStream();
   initCurrentClassStream();
+  initProjectStream();
   return runApp(
     MaterialApp(
       home: Scaffold(

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AddClassDialogRoute<T> extends PageRoute<T> {
-  AddClassDialogRoute({
+class DialogAnimationRoute<T> extends PageRoute<T> {
+  DialogAnimationRoute({
     required WidgetBuilder builder,
     RouteSettings? settings,
     bool fullscreenDialog = false,
