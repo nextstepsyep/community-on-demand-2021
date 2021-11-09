@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'navigationBodies/Profile.dart';
 import 'navigationBodies/project.dart';
 import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
-
+import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -28,8 +28,8 @@ class _NavigationState extends State<NavigationScreen> {
     ProjectScreen(),
     Container(),
     Container(),
-    Container(),
-    ProfileScreen()
+    ProfileScreen(),
+    Container()
   ];
   static const Color barColor = Colors.white;
   static const TextStyle optionStyle = TextStyle(
@@ -164,7 +164,7 @@ class _AddProjectPopupCard extends StatelessWidget {
                       thickness: 0.2,
                     ),
                     TextButton(
-                      onPressed: () {
+                      onPressed: () async {
                         addProject(projectNameController.text);
                         Navigator.of(context, rootNavigator: true).pop();
                       },

@@ -30,10 +30,16 @@ StreamSubscription<QuerySnapshot> initProjectStream() {
   });
 }
 
-Future addProject(String projectName) async {
-  return await _projectsData
-      .doc()
-      .set({'name': projectName, 'students' : Map()});
+void addProject(String projectName) async {
+  // map of <user id, reference path to user>
+  // the path of the user is just "/users/<user id>"
+  var students = [];
+  if (getUserReference() != null) {
+    students = [getUserReference()];
+  }
+
+  DocumentReference ref = _projectsData.doc();
+  return await ref.set({'name': projectName, 'students' : students, 'description' : ""});
 }
 
 Map<String, dynamic> getData() {
@@ -76,8 +82,18 @@ Future getProjects() async {
   }
 }
 
+List<String> getMembers(String id) {
+  List<dynamic> list = getProjectsData()![id]!['students'];
+  List<String> ret = [];
+  for (DocumentReference v in list) {
+    v.get().then((snapshot) {
+      ret.add(snapshot.data()!['firstName'].toString() + " " + snapshot.data()!['lastName'].toString());
+    });
+  }
+  return ret;
+}
+
 bool studentInProject(String id) {
-  String uid = getUserID();
   print(getProjectsData()![id]!['students']);
-  return getProjectsData()![id]!['students'].containsKey(uid);
+  return getProjectsData()![id]!['students'].contains(getUserReference());
 }

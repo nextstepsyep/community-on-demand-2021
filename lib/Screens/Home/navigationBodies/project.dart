@@ -37,9 +37,9 @@ class ProjectScreen extends StatelessWidget {
 
   Widget listOfWidgets(BuildContext context, double screenWidth) {
     List<Widget> list = <Widget>[];
-    List<String> member = <String>["R1", "Ash Ketchum","Brock", "Natsu","Gon Freed", "Yayo"];
     getProjectsData()!.forEach((key, value) {
       String id = key;
+      List<String> member = getMembers(id);
       if (!studentInProject(id)) {
         list.add(
           ElevatedButton(
