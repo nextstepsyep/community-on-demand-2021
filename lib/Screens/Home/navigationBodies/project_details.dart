@@ -1,14 +1,18 @@
 import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
-import 'package:community_on_demand_code_demo/Services/classes_data_services.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/project.dart';
+import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+
+import '../home_screen.dart';
 
 class ProjectDetailsPage {
   final String title;
   final String description;
   final List<String> members;
+  final String id;
 
-  const ProjectDetailsPage(this.title, this.description, this.members);
+  const ProjectDetailsPage(this.title, this.description, this.members, this.id);
 }
 
 class ProjectDetailsScreen extends StatelessWidget {
@@ -71,7 +75,8 @@ class DetailScreen extends StatelessWidget {
         title: Text(page.title, style: optionStyle),
       ),
       body: Container (
-        child: Column (
+        child: Wrap (
+          alignment: WrapAlignment.center,
           children: [
             Center(
               child: Stack(
@@ -109,8 +114,13 @@ class DetailScreen extends StatelessWidget {
                           padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
                           color: Colors.white,
                           child: SingleChildScrollView(
-                            child: Text(
-                              "BCH CHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCHHCHCHCCHCHCHCHCHCCHCHCHCHCHCCHCH" ,
+                            child: TextFormField(
+                              initialValue: getDescription(page.id),
+                              onFieldSubmitted: (value) {
+                                updateDescription(value, page.id);
+                              },
+                              textInputAction: TextInputAction.done,
+                              maxLines: 10,
                               style: TextStyle(color: Colors.black, fontSize: 12),
                             ),
                           )
@@ -180,8 +190,8 @@ class DetailScreen extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) =>
                         AlertMenu(
-                          title: "Confirmation to join",
-                          content: "Join " + page.title + "?",
+                          title: "Start the game?",
+                          content: "",
                           actions: [
                             FlatButton(
                               color: Colors.white,
@@ -194,7 +204,7 @@ class DetailScreen extends StatelessWidget {
                             FlatButton(
                               color: Colors.blue,
                               textColor: Colors.white,
-                              child: Text('Join'),
+                              child: Text('Yes'),
                               onPressed: () {
                                 Navigator.of(context, rootNavigator: true).pop('dialog');
                               },
@@ -203,7 +213,7 @@ class DetailScreen extends StatelessWidget {
                         ));
               },
               child: Text(
-                "Join Project",
+                "Begin Card Game",
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.black,
@@ -226,8 +236,8 @@ class DetailScreen extends StatelessWidget {
                     context: context,
                     builder: (BuildContext context) =>
                         AlertMenu(
-                          title: "Confirmation to join",
-                          content: "Join " + page.title + "?",
+                          title: "Are you sure?",
+                          content: "",
                           actions: [
                             FlatButton(
                               color: Colors.white,
@@ -240,16 +250,21 @@ class DetailScreen extends StatelessWidget {
                             FlatButton(
                               color: Colors.blue,
                               textColor: Colors.white,
-                              child: Text('Join'),
+                              child: Text('Yes'),
                               onPressed: () {
-                                Navigator.of(context, rootNavigator: true).pop('dialog');
+                                deleteProject(page.id);
+                                Navigator.of(context).pop();
+                                Navigator.push(
+                                    context,
+                                    new MaterialPageRoute(
+                                        builder: (context) => new HomeScreen()));
                               },
                             ),
                           ],
                         ));
               },
               child: Text(
-                "Request Feedback",
+                "Delete Project",
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.black,

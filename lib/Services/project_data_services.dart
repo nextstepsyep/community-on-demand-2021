@@ -54,6 +54,18 @@ void deleteProject(String id) {
   });
 }
 
+String getDescription(String id) {
+  if (getProjectsData() == null || getProjectsData()![id] == null || getProjectsData()![id]!['description'] == null) {
+    return "";
+  } else {
+    return getProjectsData()![id]!['description'].toString();
+  }
+}
+
+void updateDescription(String str, String id) {
+  _projectsData.doc(id).update({'description' : str});
+}
+
 Map<String, Map<String, dynamic>>? getProjectsData() {
   return _projects;
 }
@@ -94,6 +106,13 @@ List<String> getMembers(String id) {
 }
 
 bool studentInProject(String id) {
-  print(getProjectsData()![id]!['students']);
-  return getProjectsData()![id]!['students'].contains(getUserReference());
+  List<dynamic> list = getProjectsData()![id]!['students'];
+  for (DocumentReference v in list) {
+    print(v.id);
+    print(getUserReference().id);
+    if (v.id == getUserReference().id) {
+      return true;
+    }
+  }
+  return false;
 }

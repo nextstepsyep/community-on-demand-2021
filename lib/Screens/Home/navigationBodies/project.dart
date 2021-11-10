@@ -24,6 +24,7 @@ class ProjectScreen extends StatelessWidget {
         builder: (context, snapshot) {
           return Scaffold(
               body: new Center(
+                // TODO: Column overflows on many projects
                   child: Column(
                       children: <Widget>[
                         SizedBox(height: paddingHeight),
@@ -40,7 +41,7 @@ class ProjectScreen extends StatelessWidget {
     getProjectsData()!.forEach((key, value) {
       String id = key;
       List<String> member = getMembers(id);
-      if (!studentInProject(id)) {
+      if (studentInProject(id)) {
         list.add(
           ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -56,7 +57,7 @@ class ProjectScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(id), "", member)),
+                  builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(id), "", member, id)),
                 ),
               );
             },
@@ -79,6 +80,9 @@ class ProjectScreen extends StatelessWidget {
   }
 
   String getName(String id) {
+    if (getProjectsData() == null || getProjectsData()![id] == null) {
+      return "";
+    }
     return "${getProjectsData()![id]!['name']}";
   }
 }
