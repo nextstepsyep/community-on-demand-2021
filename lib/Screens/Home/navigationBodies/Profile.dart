@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'classes_screen.dart';
+import 'cardGame/card_game_page.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -128,6 +129,29 @@ class Profile extends State<ProfileScreen> {
                   },
                   child: Text(
                     'Past Projects',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: Size(screenWidth - 30, 60),
+                    primary: Colors.white,
+                    elevation: 0,
+                    shape: StadiumBorder(),
+                    side: BorderSide(color: Colors.grey, width: 1),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        new MaterialPageRoute(
+                            builder: (context) => new CardGamePage()));
+                  },
+                  child: Text(
+                    'Card Game',
                     style: TextStyle(
                       fontSize: 20.0,
                       color: Colors.black,
