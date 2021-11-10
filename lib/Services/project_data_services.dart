@@ -66,6 +66,18 @@ void updateDescription(String str, String id) {
   _projectsData.doc(id).update({'description' : str});
 }
 
+void updateName(String str, String id) {
+  _projectsData.doc(id).update({'name' : str});
+}
+
+String getName(String id) {
+  if (getProjectsData() == null || getProjectsData()![id] == null || getProjectsData()![id]!['description'] == null) {
+    return "";
+  } else {
+    return getProjectsData()![id]!['name'].toString();
+  }
+}
+
 Map<String, Map<String, dynamic>>? getProjectsData() {
   return _projects;
 }

@@ -72,7 +72,14 @@ class DetailScreen extends StatelessWidget {
         .width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(page.title, style: optionStyle),
+        title: TextFormField(
+          initialValue: getName(page.id),
+          onFieldSubmitted: (value) {
+            updateName(value, page.id);
+          },
+          textInputAction: TextInputAction.done,
+          style: optionStyle
+        )
       ),
       body: Container (
         child: Wrap (
