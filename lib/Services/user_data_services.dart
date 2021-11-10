@@ -8,13 +8,21 @@ final CollectionReference _userData =
 CollectionReference _skills = _userData.doc(_uid).collection("skills");
 Stream<DocumentSnapshot>? _stream;
 Map<String, dynamic>? _data;
+Map<String, Map<String, dynamic>>? _skillData;
 
 StreamSubscription<DocumentSnapshot> setUserID(String uid) {
   _uid = uid;
   _skills = _userData.doc(_uid).collection("skills");
+  _skills.snapshots().listen((event) {
+    List<QueryDocumentSnapshot> list = event.docs;
+    list.forEach((element) {
+      _skillData!.putIfAbsent(element.id, () => element.data());
+    });
+  });
   _stream = _userData.doc(_uid).snapshots().asBroadcastStream();
-  return _stream!.listen((event) => _data = event.data(),
-      onError: (e) => print('could not load data'));
+  return _stream!.listen((event) {
+    _data = event.data();
+  }, onError: (e) => print('could not load data'));
 }
 
 String getUserID() {
@@ -30,11 +38,11 @@ void createProfile(String firstName, String lastName, String bio) {
       .doc(_uid)
       .set({'firstName': firstName, 'lastName': lastName, 'bio': bio});
   // _skills.doc()
-  _skills.doc("green").set({'badges': 0});
-  _skills.doc("blue").set({'badges': 0});
-  _skills.doc("red").set({'badges': 0});
-  _skills.doc("purple").set({'badges': 0});
-  _skills.doc("gold").set({'badges': 0}); //creating skill documents
+  _skills.doc("awareness").set({'badges': 0});
+  _skills.doc("innovation").set({'badges': 0});
+  _skills.doc("workforce").set({'badges': 0});
+  _skills.doc("skill").set({'badges': 0});
+  _skills.doc("lead").set({'badges': 0}); //create skill documents
   updateSteamSkills("green", 6, 12);
 }
 
@@ -75,19 +83,19 @@ void updateSteamSkills(String type, [int badges = 0, int skillCoins = 0]) {
   DocumentReference skill = _skills.doc(type);
   int mult;
   switch (type) {
-    case "green":
+    case "awareness":
       mult = 10;
       break;
-    case "blue":
+    case "innovation":
       mult = 20;
       break;
-    case "red":
+    case "workforce":
       mult = 30;
       break;
-    case "purple":
+    case "skill":
       mult = 40;
       break;
-    case "gold":
+    case "lead":
       mult = 50;
       break;
     default:
