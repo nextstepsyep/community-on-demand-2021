@@ -36,12 +36,14 @@ class JoinClassPage extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         body: new Center(
+          child: SingleChildScrollView(
             child: Column(
                 children: <Widget>[
                   SizedBox(height: paddingHeight),
                   listOfWidgets(context, screenWidth)
                 ]
             )
+          )
         )
     );
   });

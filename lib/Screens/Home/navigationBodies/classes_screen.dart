@@ -27,12 +27,14 @@ class ClassesPage extends StatelessWidget {
           return Scaffold(
             appBar: appBar(context),
               body: new Center(
-                  child: Column(
-                      children: <Widget>[
-                        SizedBox(height: paddingHeight),
-                        listOfWidgets(context, screenWidth)
-                      ]
-                  )
+                child: SingleChildScrollView(
+                    child: Column(
+                        children: <Widget>[
+                          SizedBox(height: paddingHeight),
+                          listOfWidgets(context, screenWidth)
+                        ]
+                    )
+                )
               )
           );
         });
