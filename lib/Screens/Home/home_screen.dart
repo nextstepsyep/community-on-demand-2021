@@ -135,6 +135,8 @@ class _AddProjectPopupCard extends StatelessWidget {
 
   final TextEditingController projectNameController =
   TextEditingController(text: getData()['projectName']);
+  final TextEditingController projectDescriptionController =
+  TextEditingController(text: getData()['projectDescription']);
 
   @override
   Widget build(BuildContext context) {
@@ -163,9 +165,16 @@ class _AddProjectPopupCard extends StatelessWidget {
                       color: Colors.black,
                       thickness: 0.2,
                     ),
+                    SizedBox(height: 20),
+                    buildTextField("Enter your project's description", 1, 2, projectDescriptionController),
+                    SizedBox(height: 20),
+                    const Divider(
+                      color: Colors.black,
+                      thickness: 0.2,
+                    ),
                     TextButton(
                       onPressed: () async {
-                        addProject(projectNameController.text);
+                        addProject(projectNameController.text, projectDescriptionController.text);
                         Navigator.of(context, rootNavigator: true).pop();
                       },
                       child: const Text('Create Project'),
@@ -186,6 +195,7 @@ class _AddProjectPopupCard extends StatelessWidget {
       textAlignVertical: TextAlignVertical.top,
       minLines: minLines,
       maxLines: maxLines,
+      textInputAction: TextInputAction.done,
       controller: controller,
       decoration: InputDecoration(
         border: OutlineInputBorder(),

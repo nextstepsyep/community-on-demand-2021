@@ -30,7 +30,7 @@ StreamSubscription<QuerySnapshot> initProjectStream() {
   });
 }
 
-void addProject(String projectName) async {
+void addProject(String projectName, String projectDescription) async {
   // map of <user id, reference path to user>
   // the path of the user is just "/users/<user id>"
   var students = [];
@@ -39,7 +39,7 @@ void addProject(String projectName) async {
   }
 
   DocumentReference ref = _projectsData.doc();
-  return await ref.set({'name': projectName, 'students' : students, 'description' : ""});
+  return await ref.set({'name': projectName, 'students' : students, 'description' : projectDescription});
 }
 
 Map<String, dynamic> getData() {
