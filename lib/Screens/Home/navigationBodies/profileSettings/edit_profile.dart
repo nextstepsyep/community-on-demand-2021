@@ -114,6 +114,7 @@ class EditProfile extends StatelessWidget {
                       onPressed: () {
                         updateProfile(firstNameController.text,
                             lastNameController.text, bioController.text);
+                        Navigator.of(context).pop();
                       },
                       color: Colors.blue,
                       padding: EdgeInsets.symmetric(horizontal: 65),
