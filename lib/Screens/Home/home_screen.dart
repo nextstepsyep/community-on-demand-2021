@@ -2,6 +2,7 @@ import 'package:community_on_demand_code_demo/Screens/Home/teacher/animations/di
 import 'package:flutter/material.dart';
 
 import 'navigationBodies/Profile.dart';
+import 'navigationBodies/cardGame/card_game_page.dart';
 import 'navigationBodies/project.dart';
 import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
 import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
@@ -176,6 +177,10 @@ class _AddProjectPopupCard extends StatelessWidget {
                       onPressed: () async {
                         addProject(projectNameController.text, projectDescriptionController.text);
                         Navigator.of(context, rootNavigator: true).pop();
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) => new CardGamePage()));
                       },
                       child: const Text('Create Project'),
                     ),

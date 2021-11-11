@@ -208,7 +208,7 @@ class DetailScreen extends StatelessWidget {
                               child: Column(
                                   children: <Widget>[
                                     SizedBox(height: paddingHeight / 2),
-                                    listOfWidgets(["Category1", "Category2", "Category3"])
+                                    listOfWidgets(["Innovation", "Awareness", "Lead", "Workforce"])
                                   ]
                               )
                           )
