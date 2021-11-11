@@ -23,6 +23,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  swipe_cards : ^0.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -53,6 +54,8 @@ flutter:
   # assets:
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/images/cards/
 
   fonts:
     - family: Cookie
