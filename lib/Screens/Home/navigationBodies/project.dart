@@ -58,6 +58,7 @@ class ProjectScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
+                  // TODO: Change this to open to card game.
                   builder: (context) => DetailScreen(page: ProjectDetailsPage(getName(id), "", member, id)),
                 ),
               );

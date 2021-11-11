@@ -58,10 +58,12 @@ class DetailScreen extends StatelessWidget {
       color: Colors.black,
       fontFamily: 'Cookie');
   // In the constructor, require a Todo.
-  const DetailScreen({Key? key, required this.page}) : super(key: key);
+  DetailScreen({Key? key, required this.page}) : super(key: key);
 
   // Declare a field that holds the Todo.
   final ProjectDetailsPage page;
+  final FocusNode projectNameNode = FocusNode();
+  final FocusNode projectDescriptionNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -78,8 +80,20 @@ class DetailScreen extends StatelessWidget {
             updateName(value, page.id);
           },
           textInputAction: TextInputAction.done,
-          style: optionStyle
-        )
+          style: optionStyle,
+          focusNode: projectNameNode
+        ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.edit_rounded,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              FocusScope.of(context).requestFocus(projectNameNode);
+            },
+          )
+        ],
       ),
       body: Container (
         child: Wrap (
@@ -103,15 +117,34 @@ class DetailScreen extends StatelessWidget {
                   ),
                   Positioned(
                       left: 50,
-                      top: 12,
+                      top: -22,
                       child: Container(
                         padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
                         color: Colors.white,
-                        child: Text(
-                          'Description',
-                          style: TextStyle(color: Colors.black, fontSize: 12),
-                        ),
-                      )),
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black, fontSize: 12),
+                            children: [
+                              TextSpan(text: 'Description'),
+                              WidgetSpan(
+                                child: Transform.translate(
+                                  offset: const Offset(0.0, 15.0),
+                                  child: IconButton(
+                                  icon: Icon(
+                                    Icons.edit_rounded,
+                                    color: Colors.black,
+                                  ),
+                                  onPressed: () {
+                                    FocusScope.of(context).requestFocus(projectDescriptionNode);
+                                  },
+                                ),
+                                )
+                              )
+                            ],
+                          ),
+                        )
+                      )
+                  ),
                   Positioned(
                       left: 30,
                       top: 30,
@@ -126,10 +159,58 @@ class DetailScreen extends StatelessWidget {
                               onFieldSubmitted: (value) {
                                 updateDescription(value, page.id);
                               },
+                              focusNode: projectDescriptionNode,
                               textInputAction: TextInputAction.done,
                               maxLines: 10,
                               style: TextStyle(color: Colors.black, fontSize: 12),
                             ),
+                          )
+                      )),
+                ],
+              ),
+            ),
+            Center(
+              child: Stack(
+                children: <Widget>[
+                  Container(
+                    width: double.infinity,
+                    height: 100,
+                    margin: EdgeInsets.fromLTRB(20, 20, 20, 10),
+                    padding: EdgeInsets.only(bottom: 10),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                          color: Color.fromARGB(255, 51, 204, 255), width: 1),
+                      borderRadius: BorderRadius.circular(5),
+                      shape: BoxShape.rectangle,
+                    ),
+                    // child: ""
+                  ),
+                  Positioned(
+                      left: 50,
+                      top: 12,
+                      child: Container(
+                        padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                        color: Colors.white,
+                        child: Text(
+                          'Card Values',
+                          style: TextStyle(color: Colors.black, fontSize: 12),
+                        ),
+                      )),
+                  Positioned(
+                      left: 30,
+                      top: 30,
+                      right: 40,
+                      bottom: 20,
+                      child: Container(
+                          padding: EdgeInsets.only(bottom: 10, left: 10, right: 10),
+                          color: Colors.white,
+                          child: SingleChildScrollView(
+                              child: Column(
+                                  children: <Widget>[
+                                    SizedBox(height: paddingHeight / 2),
+                                    listOfWidgets(["Category1", "Category2", "Category3"])
+                                  ]
+                              )
                           )
                       )),
                 ],
@@ -186,52 +267,6 @@ class DetailScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 minimumSize: Size(screenWidth - screenWidth / 3, 40),
                 primary: Colors.yellow,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                side: BorderSide(color: Colors.grey, width: 1),
-              ),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        AlertMenu(
-                          title: "Start the game?",
-                          content: "",
-                          actions: [
-                            FlatButton(
-                              color: Colors.white,
-                              textColor: Colors.black,
-                              child: Text('Cancel'),
-                              onPressed: () {
-                                Navigator.of(context, rootNavigator: true).pop('dialog');
-                              },
-                            ),
-                            FlatButton(
-                              color: Colors.blue,
-                              textColor: Colors.white,
-                              child: Text('Yes'),
-                              onPressed: () {
-                                Navigator.of(context, rootNavigator: true).pop('dialog');
-                              },
-                            ),
-                          ],
-                        ));
-              },
-              child: Text(
-                "Begin Card Game",
-                style: TextStyle(
-                  fontSize: 20.0,
-                  color: Colors.black,
-                ),
-                textAlign: TextAlign.center,
-              ),
-            ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(screenWidth - screenWidth / 3, 40),
-                primary: Colors.deepOrangeAccent,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
