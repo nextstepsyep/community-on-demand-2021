@@ -8,16 +8,18 @@ final CollectionReference _userData =
 CollectionReference _skills = _userData.doc(_uid).collection("skills");
 Stream<DocumentSnapshot>? _stream;
 Map<String, dynamic>? _data;
-Map<String, Map<String, dynamic>>? _skillData;
+Map<String, Map<String, dynamic>> _skillData = new Map();
 
 StreamSubscription<DocumentSnapshot> setUserID(String uid) {
   _uid = uid;
   _skills = _userData.doc(_uid).collection("skills");
   _skills.snapshots().listen((event) {
+    _skillData = new Map();
     List<QueryDocumentSnapshot> list = event.docs;
     list.forEach((element) {
-      _skillData!.putIfAbsent(element.id, () => element.data());
+      _skillData.putIfAbsent(element.id, () => element.data());
     });
+    print(_skillData);
   });
   _stream = _userData.doc(_uid).snapshots().asBroadcastStream();
   return _stream!.listen((event) {
@@ -37,13 +39,19 @@ void createProfile(String firstName, String lastName, String bio) {
   _userData
       .doc(_uid)
       .set({'firstName': firstName, 'lastName': lastName, 'bio': bio});
-  // _skills.doc()
-  _skills.doc("awareness").set({'badges': 0});
-  _skills.doc("innovation").set({'badges': 0});
-  _skills.doc("workforce").set({'badges': 0});
-  _skills.doc("skill").set({'badges': 0});
-  _skills.doc("lead").set({'badges': 0}); //create skill documents
-  updateSteamSkills("green", 6, 12);
+  Map<String, dynamic> stats = {
+    'used': 0,
+    'didntUse': 0,
+    'dontHave': 0,
+    'history': [],
+    'badges': 0,
+    'achievementValue': 0,
+    'skillcoins': 0
+  };
+  _skills.doc("awareness").set(stats);
+  _skills.doc("innovation").set(stats);
+  _skills.doc("workforce").set(stats);
+  _skills.doc("lead").set(stats); //create skill documents
 }
 
 void updateProfile(String firstName, String lastName, String bio) {
@@ -56,12 +64,15 @@ Map<String, dynamic> getUserData() {
   return _data!;
 }
 
+Map<String, Map<String, dynamic>> getUserSkillData() {
+  return _skillData;
+}
+
 Stream<DocumentSnapshot> getUserStream() {
   return _stream!;
 }
 
-Future<void> updateSkillCount(
-    String type, int used, int didntUse, int dontHave) async {
+void updateSkillCount(String type, int used, int didntUse, int dontHave) {
   DocumentReference skill = _skills.doc(type);
   Map<String, dynamic> stats = {
     'used': used,
@@ -69,11 +80,6 @@ Future<void> updateSkillCount(
     'dontHave': dontHave,
     'time': Timestamp.fromDate(DateTime.now())
   };
-  try {
-    await skill.update(stats);
-  } catch (e) {
-    skill.set(stats);
-  }
   skill.update({
     'history': FieldValue.arrayUnion([stats])
   });
