@@ -208,7 +208,7 @@ class DetailScreen extends StatelessWidget {
                               child: Column(
                                   children: <Widget>[
                                     SizedBox(height: paddingHeight / 2),
-                                    listOfWidgets(["Innovation", "Awareness", "Lead", "Workforce"])
+                                    listOfColumns(["Innovation", "6", "Awareness", "20", "Lead", "15", "Workforce", "12"])
                                   ]
                               )
                           )
@@ -255,7 +255,7 @@ class DetailScreen extends StatelessWidget {
                             child: Column(
                                 children: <Widget>[
                                   SizedBox(height: paddingHeight / 2),
-                                  listOfWidgets(page.members)
+                                  listOfTexts(page.members)
                                 ]
                             )
                           )
@@ -321,14 +321,23 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-  Widget listOfWidgets(List<String> members) {
-    List<Text> member_display = <Text>[];
-    for (int i = 0; i < members.length; i++) {
+  Widget listOfColumns(List<String> members) {
+    List<Column> member_display = <Column>[];
+    for (int i = 0; i < members.length; i+=2) {
       member_display.add(
-        Text(
-          members[i],
-          style: TextStyle(color: Colors.black, fontSize: 12),
-        ),
+          Column(
+              children: [
+                Text(
+                  members[i],
+                  style: TextStyle(color: Colors.black, fontSize: 12),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  members[i+1],
+                  style: TextStyle(color: Colors.black, fontSize: 12),
+                )
+              ]
+          )
       );
     }
     return Wrap(
@@ -338,5 +347,20 @@ class DetailScreen extends StatelessWidget {
     );
   }
 
-
+  Widget listOfTexts(List<String> members) {
+    List<Text> member_display = <Text>[];
+    for (int i = 0; i < members.length; i++) {
+      member_display.add(
+        Text(
+          members[i],
+          style: TextStyle(color: Colors.black, fontSize: 12),
+        )
+      );
+    }
+    return Wrap(
+        spacing: 20.0, // gap between adjacent chips
+        runSpacing: 20.0, // gap between lines
+        children: member_display
+    );
+  }
 }
