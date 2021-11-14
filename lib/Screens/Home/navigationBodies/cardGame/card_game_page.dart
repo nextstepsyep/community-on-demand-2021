@@ -1,10 +1,10 @@
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/cardGame/card_game.dart';
+import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/caresReport/skill_count_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
 
 import 'card_game.dart';
-
 
 import 'package:community_on_demand_code_demo/Screens/Home/home_screen.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/classes_screen.dart';
@@ -33,7 +33,6 @@ class CardGamePage extends StatelessWidget {
         title: Text('Card Game', style: optionStyle),
         backgroundColor: Colors.white,
       ),
-
       body: new Center(
         widthFactor: screenWidth * 0.95,
         heightFactor: screenHeight * 0.95,
@@ -72,16 +71,10 @@ class CardGamePage extends StatelessWidget {
                 side: BorderSide(color: Colors.grey, width: 1),
               ),
               onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) =>
-                        AlertMenu(
-                          title: "RULES",
-                          content: "swipe right if you have the skill "
-                              "left if you do not "
-                              "up if you somewhat have the skill",
-                          actions: [],
-                        ));
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => new SkillCountPage()));
               },
               child: Text(
                 'Show Stats',
@@ -103,8 +96,7 @@ class CardGamePage extends StatelessWidget {
               onPressed: () {
                 showDialog(
                     context: context,
-                    builder: (BuildContext context) =>
-                        AlertMenu(
+                    builder: (BuildContext context) => AlertMenu(
                           title: "RULES",
                           content: "swipe right if you have the skill "
                               "left if you do not "
