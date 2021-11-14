@@ -50,6 +50,7 @@ class _CardGameState extends State<CardGame> {
   List<SwipeItem> _swipeItems = <SwipeItem>[];
   late MatchEngine _matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  Map<String, List<int>> categoryTotals = {};
 
   List<Card> cards = [
     //awareness: 5 cards
@@ -443,7 +444,7 @@ class _CardGameState extends State<CardGame> {
 
   @override
   void initState() {
-    var categoryTotals = {
+    categoryTotals = {
       'awareness': [0, 0, 0, 0],
       'innovation': [0, 0, 0, 0],
       'lead': [0, 0, 0, 0],
@@ -460,18 +461,17 @@ class _CardGameState extends State<CardGame> {
           ),
           likeAction: () {
             cards[i].skillLevel = 2;
+            categoryTotals[cards[i].type]![2] += 1;
           },
           nopeAction: () {
             cards[i].skillLevel = 0;
+            categoryTotals[cards[i].type]![0] += 1;
           },
           superlikeAction: () {
             cards[i].skillLevel = 1;
+            categoryTotals[cards[i].type]![1] += 1;
           }));
-        categoryTotals[cards[i].type]![cards[i].skillLevel] += 1;
     }
-    categoryTotals.forEach((key, value) {
-      updateSkillCount(key, value[2], value[1], value[0]);
-    });
 
     _matchEngine = MatchEngine(swipeItems: _swipeItems);
     super.initState();
@@ -511,6 +511,10 @@ class _CardGameState extends State<CardGame> {
                               actions: [],
                             )
                     );
+                    categoryTotals.forEach((key, value) {
+                      updateSkillCount(key, value[2], value[1], value[0]);
+                    });
+                    print(categoryTotals);
                   },
                 ),
               ),

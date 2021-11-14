@@ -80,6 +80,7 @@ void updateSkillCount(String type, int used, int didntUse, int dontHave) {
     'dontHave': dontHave,
     'time': Timestamp.fromDate(DateTime.now())
   };
+  skill.update(stats);
   skill.update({
     'history': FieldValue.arrayUnion([stats])
   });
