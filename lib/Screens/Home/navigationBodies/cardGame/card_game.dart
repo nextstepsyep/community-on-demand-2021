@@ -1,4 +1,5 @@
 import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
+import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_cards/swipe_cards.dart';
@@ -442,6 +443,13 @@ class _CardGameState extends State<CardGame> {
 
   @override
   void initState() {
+    var categoryTotals = {
+      'awareness': [0, 0, 0, 0],
+      'innovation': [0, 0, 0, 0],
+      'lead': [0, 0, 0, 0],
+      'skill': [0, 0, 0, 0],
+      'workforce': [0, 0, 0, 0],
+    };
     for (int i = 0; i < cards.length; i++) {
       _swipeItems.add(SwipeItem(
           content: Card(
@@ -459,7 +467,11 @@ class _CardGameState extends State<CardGame> {
           superlikeAction: () {
             cards[i].skillLevel = 1;
           }));
+        categoryTotals[cards[i].type]![cards[i].skillLevel] += 1;
     }
+    categoryTotals.forEach((key, value) {
+      updateSkillCount(key, value[2], value[1], value[0]);
+    });
 
     _matchEngine = MatchEngine(swipeItems: _swipeItems);
     super.initState();
