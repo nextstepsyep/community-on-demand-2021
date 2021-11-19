@@ -1,4 +1,5 @@
 import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
+import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swipe_cards/swipe_cards.dart';
@@ -49,6 +50,7 @@ class _CardGameState extends State<CardGame> {
   List<SwipeItem> _swipeItems = <SwipeItem>[];
   late MatchEngine _matchEngine;
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
+  Map<String, List<int>> categoryTotals = {};
 
   List<Card> cards = [
     //awareness: 5 cards
@@ -442,6 +444,13 @@ class _CardGameState extends State<CardGame> {
 
   @override
   void initState() {
+    categoryTotals = {
+      'awareness': [0, 0, 0, 0],
+      'innovation': [0, 0, 0, 0],
+      'lead': [0, 0, 0, 0],
+      'skill': [0, 0, 0, 0],
+      'workforce': [0, 0, 0, 0],
+    };
     for (int i = 0; i < cards.length; i++) {
       _swipeItems.add(SwipeItem(
           content: Card(
@@ -452,12 +461,15 @@ class _CardGameState extends State<CardGame> {
           ),
           likeAction: () {
             cards[i].skillLevel = 2;
+            categoryTotals[cards[i].type]![2] += 1;
           },
           nopeAction: () {
             cards[i].skillLevel = 0;
+            categoryTotals[cards[i].type]![0] += 1;
           },
           superlikeAction: () {
             cards[i].skillLevel = 1;
+            categoryTotals[cards[i].type]![1] += 1;
           }));
     }
 
@@ -499,6 +511,10 @@ class _CardGameState extends State<CardGame> {
                               actions: [],
                             )
                     );
+                    categoryTotals.forEach((key, value) {
+                      updateSkillCount(key, value[2], value[1], value[0]);
+                    });
+                    print(categoryTotals);
                   },
                 ),
               ),

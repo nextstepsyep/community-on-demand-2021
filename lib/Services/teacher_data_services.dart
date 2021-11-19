@@ -33,10 +33,11 @@ StreamSubscription<QuerySnapshot> initTeacherStream() {
   });
 }
 
-StreamSubscription<DocumentSnapshot> initCurrentClassStream() {
+StreamSubscription<DocumentSnapshot>? initCurrentClassStream() {
   User? user = FirebaseAuth.instance.currentUser;
   //already called on main.dart
-  _docStream = _userData.doc(user!.uid).snapshots().asBroadcastStream();
+  if (user == null || user.uid == null) return null;
+  _docStream = _userData.doc(user.uid).snapshots().asBroadcastStream();
   return _docStream!.listen((event) {
     currentClass = event.data()!['currentClass'];
   });
