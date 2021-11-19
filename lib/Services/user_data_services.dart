@@ -43,7 +43,8 @@ void createProfile(String firstName, String lastName, String bio) async {
     'history': [],
     'badges': 0,
     'achievementValue': 0,
-    'skillcoins': 0
+    'skillcoins': 0,
+    'totalValue': 0
   };
   _skills.doc("awareness").set(stats);
   _skills.doc("skill").set(stats);
@@ -86,18 +87,24 @@ Stream<DocumentSnapshot> getUserStream() {
   return _stream!;
 }
 
-void updateSkillCount(String type, int used, int didntUse, int dontHave) {
+void updateSkillCount(String type, int used, int didntUse, int dontHave, int totalValue) {
   DocumentReference skill = _skills.doc(type);
   Map<String, dynamic> stats = {
     'used': used,
     'didntUse': didntUse,
     'dontHave': dontHave,
+    'totalValue': totalValue,
     'time': Timestamp.fromDate(DateTime.now())
   };
   skill.update(stats);
   skill.update({
     'history': FieldValue.arrayUnion([stats])
   });
+}
+
+// Returns the total value of all cards for a passed in category
+String getCardTotal(String category) {
+  return "${getUserSkillData()[category]!['totalValue']}";
 }
 
 void updateSteamSkills(String type, [int badges = 0, int skillCoins = 0]) {

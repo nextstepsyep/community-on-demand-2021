@@ -1,6 +1,7 @@
 import 'package:community_on_demand_code_demo/Features/AlertMenu.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/project.dart';
 import 'package:community_on_demand_code_demo/Services/project_data_services.dart';
+import 'package:community_on_demand_code_demo/Services/user_data_services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -208,7 +209,7 @@ class DetailScreen extends StatelessWidget {
                               child: Column(
                                   children: <Widget>[
                                     SizedBox(height: paddingHeight / 2),
-                                    listOfColumns(["Innovation", "6", "Awareness", "20", "Lead", "15", "Workforce", "12"])
+                                    listOfColumns(["Innovation", getCardTotal("innovation"), "Awareness", getCardTotal("awareness"), "Lead", getCardTotal("lead"), "Skill", getCardTotal("skill"), "Workforce", getCardTotal("workforce")])
                                   ]
                               )
                           )

@@ -462,10 +462,12 @@ class _CardGameState extends State<CardGame> {
           likeAction: () {
             cards[i].skillLevel = 2;
             categoryTotals[cards[i].type]![2] += 1;
+            categoryTotals[cards[i].type]![3] += cards[i].value;
           },
           nopeAction: () {
             cards[i].skillLevel = 0;
             categoryTotals[cards[i].type]![0] += 1;
+            categoryTotals[cards[i].type]![3] += cards[i].value ~/ 2;
           },
           superlikeAction: () {
             cards[i].skillLevel = 1;
@@ -512,7 +514,7 @@ class _CardGameState extends State<CardGame> {
                             )
                     );
                     categoryTotals.forEach((key, value) {
-                      updateSkillCount(key, value[2], value[1], value[0]);
+                      updateSkillCount(key, value[2], value[1], value[0], value[3]);
                     });
                     print(categoryTotals);
                   },
