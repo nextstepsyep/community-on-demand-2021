@@ -445,7 +445,7 @@ class _CardGameState extends State<CardGame> {
   @override
   void initState() {
     categoryTotals = {
-      'awareness': [0, 0, 0, 0],
+      'awareness': [0, 0, 0, 0], // [didn't have or use, had but didn't use, had and used, total points]
       'innovation': [0, 0, 0, 0],
       'lead': [0, 0, 0, 0],
       'skill': [0, 0, 0, 0],
@@ -467,11 +467,12 @@ class _CardGameState extends State<CardGame> {
           nopeAction: () {
             cards[i].skillLevel = 0;
             categoryTotals[cards[i].type]![0] += 1;
-            categoryTotals[cards[i].type]![3] += cards[i].value ~/ 2;
+            categoryTotals[cards[i].type]![3] += 0;
           },
           superlikeAction: () {
             cards[i].skillLevel = 1;
             categoryTotals[cards[i].type]![1] += 1;
+            categoryTotals[cards[i].type]![3] += cards[i].value ~/ 2;
           }));
     }
 
