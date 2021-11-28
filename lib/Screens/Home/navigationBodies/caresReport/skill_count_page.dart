@@ -122,15 +122,15 @@ class SkillCountPage extends StatelessWidget {
                     ),
                     SizedBox(
                       width: screenWidth * .23,
-                      child: Text("${data['innovation']!["used"]}"),
+                      child: Text("${data['skill']!["used"]}"),
                     ),
                     SizedBox(
                       width: screenWidth * .23,
-                      child: Text("${data['innovation']!["didntUse"]}"),
+                      child: Text("${data['skill']!["didntUse"]}"),
                     ),
                     SizedBox(
                       width: screenWidth * .23,
-                      child: Text("${data['innovation']!["dontHave"]}"),
+                      child: Text("${data['skill']!["dontHave"]}"),
                     )
                   ],
                 )),
