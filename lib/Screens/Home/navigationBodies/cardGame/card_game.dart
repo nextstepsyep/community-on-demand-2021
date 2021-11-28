@@ -75,7 +75,7 @@ class _CardGameState extends State<CardGame> {
     }
   }
 
-  Future<Map<String, List<int>>> getCategoryTotals(List<Card> cardList) async {
+  Map<String, List<int>> getCategoryTotals(List<Card> cardList) {
     if (categoryTotals.isNotEmpty) {
       return categoryTotals;
     } else {
@@ -91,7 +91,7 @@ class _CardGameState extends State<CardGame> {
 
   Future<void> initializeSwipeItems() async {
     List<Card> c = await getCards();
-    Map<String, List<int>> cT = await getCategoryTotals(c);
+    Map<String, List<int>> cT = getCategoryTotals(c);
     setState(() {
       cards = c;
       categoryTotals = cT;
