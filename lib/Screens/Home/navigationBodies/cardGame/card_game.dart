@@ -55,11 +55,11 @@ class _CardGameState extends State<CardGame> {
     if (cards.isNotEmpty) {
       return cards;
     } else {
-      final _rawData = await rootBundle.loadString('assets/data/Card Data.csv');
-      List<List<dynamic>> _listData = CsvToListConverter().convert(_rawData);
-      _listData.removeAt(0);
+      String cardDataString = await rootBundle.loadString('assets/data/Card Data.csv');
+      List<List<dynamic>> cardDataList = CsvToListConverter().convert(cardDataString);
+      cardDataList.removeAt(0);
       List<Card> cardList = [];
-      for (List<dynamic> item in _listData) {
+      for (List<dynamic> item in cardDataList) {
         String cardName = item[0];
         String cardType = item[1];
         int cardValue = item[2];
@@ -76,13 +76,17 @@ class _CardGameState extends State<CardGame> {
   }
 
   Future<Map<String, List<int>>> getCategoryTotals(List<Card> cardList) async {
-    Map<String, List<int>> catTotals = {};
-    for (Card card in cardList) {
-      if (!catTotals.containsKey(card.type)) {
-        catTotals[card.type] = [0, 0, 0, 0];
+    if (categoryTotals.isNotEmpty) {
+      return categoryTotals;
+    } else {
+      Map<String, List<int>> catTotals = {};
+      for (Card card in cardList) {
+        if (!catTotals.containsKey(card.type)) {
+          catTotals[card.type] = [0, 0, 0, 0];
+        }
       }
+      return catTotals;
     }
-    return catTotals;
   }
 
   Future<void> initializeSwipeItems() async {
