@@ -86,8 +86,12 @@ class _CardGameState extends State<CardGame> {
   }
 
   Future<void> initializeSwipeItems() async {
-    cards = await getCards();
-    categoryTotals = await getCategoryTotals(cards);
+    List<Card> c = await getCards();
+    Map<String, List<int>> cT = await getCategoryTotals(c);
+    setState(() {
+      cards = c;
+      categoryTotals = cT;
+    });
     for (int i = 0; i < cards.length; i++) {
       _swipeItems.add(SwipeItem(
           content: cards[i],
@@ -131,6 +135,9 @@ class _CardGameState extends State<CardGame> {
                   child: SwipeCards(
                     matchEngine: _matchEngine!,
                     itemBuilder: (BuildContext context, int index) {
+                      print(cards);
+                      print(categoryTotals);
+                      print(_matchEngine);
                       return Container(
                         alignment: Alignment.center,
                         child: SingleChildScrollView(
@@ -193,7 +200,7 @@ class Card {
     required this.type,
     required this.imgUrl,
     required this.value,
-    skillLevel = 0,
+    this.skillLevel = 0,
   });
 
   @override
