@@ -65,6 +65,7 @@ class _LoginFormState extends State<LoginForm> {
                   ),
                   contentPadding: EdgeInsets.fromLTRB(2.0, 0, 0, 0),
                 ),
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {

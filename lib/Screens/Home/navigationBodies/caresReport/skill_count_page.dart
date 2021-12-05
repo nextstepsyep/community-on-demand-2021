@@ -26,137 +26,83 @@ class SkillCountPage extends StatelessWidget {
             onPressed: () => Navigator.of(context).pop(),
           ),
         ),
-        body: Column(
-          children: [
-            Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(width: screenWidth * .28),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("Have/user"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("Have/Don't use"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("Don't have"),
-                    )
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Table(
+              border: TableBorder.all(),
+              columnWidths: const <int, TableColumnWidth> {
+                0: FlexColumnWidth(3),
+                1: FlexColumnWidth(1),
+                2: FlexColumnWidth(1),
+                3: FlexColumnWidth(1),
+              },
+              children: <TableRow>[
+                TableRow(
+                  children: <CustomCell>[
+                    CustomCell(text: 'Skill Type'),
+                    CustomCell(text: 'Have and Used'),
+                    CustomCell(text: 'Have and Didn\'t Use'),
+                    CustomCell(text: 'Don\'t Have'),
                   ],
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: screenWidth * .28,
-                      child: Text("Career Awareness"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['awareness']!["used"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['awareness']!["didntUse"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['awareness']!["dontHave"]}"),
-                    )
-                  ],
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(
-                        width: screenWidth * .28,
-                        child: Text("Innovation & Entrepreneurship")),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['innovation']!['used']}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['innovation']!['didntUse']}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['innovation']!['dontHave']}"),
-                    )
-                  ],
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: screenWidth * .28,
-                      child: Text("Workforce Readiness"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['workforce']!["used"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['workforce']!["didntUse"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['workforce']!["dontHave"]}"),
-                    )
-                  ],
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: screenWidth * .28,
-                      child: Text("STEAM Career Clusters"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['skill']!["used"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['skill']!["didntUse"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['skill']!["dontHave"]}"),
-                    )
-                  ],
-                )),
-            Padding(
-                padding: EdgeInsets.only(top: 20),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: screenWidth * .28,
-                      child: Text("Leadership & Teamwork"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['lead']!["used"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['lead']!["didntUse"]}"),
-                    ),
-                    SizedBox(
-                      width: screenWidth * .23,
-                      child: Text("${data['lead']!["dontHave"]}"),
-                    )
-                  ],
-                ))
-          ],
+                ),
+                TableRow(
+                    children: <CustomCell>[
+                      CustomCell(text: 'Career Awareness'),
+                      CustomCell(text: '${data['awareness']!['used']}'),
+                      CustomCell(text: '${data['awareness']!['didntUse']}'),
+                      CustomCell(text: '${data['awareness']!['dontHave']}'),
+                    ]
+                ),
+                TableRow(
+                    children: <CustomCell>[
+                      CustomCell(text: 'Innovation & Entrepreneurship'),
+                      CustomCell(text: '${data['innovation']!['used']}'),
+                      CustomCell(text: '${data['innovation']!['didntUse']}'),
+                      CustomCell(text: '${data['innovation']!['dontHave']}'),
+                    ]
+                ),
+                TableRow(
+                    children: <CustomCell>[
+                      CustomCell(text: 'Workforce Readiness'),
+                      CustomCell(text: '${data['workforce']!['used']}'),
+                      CustomCell(text: '${data['workforce']!['didntUse']}'),
+                      CustomCell(text: '${data['workforce']!['dontHave']}'),
+                    ]
+                ),
+                TableRow(
+                    children: <CustomCell>[
+                      CustomCell(text: 'STEAM Career Clusters'),
+                      CustomCell(text: '${data['skill']!['used']}'),
+                      CustomCell(text: '${data['skill']!['didntUse']}'),
+                      CustomCell(text: '${data['skill']!['dontHave']}'),
+                    ]
+                ),
+                TableRow(
+                    children: <CustomCell>[
+                      CustomCell(text: 'Leadership & Teamwork'),
+                      CustomCell(text: '${data['lead']!['used']}'),
+                      CustomCell(text: '${data['lead']!['didntUse']}'),
+                      CustomCell(text: '${data['lead']!['dontHave']}'),
+                    ]
+                ),
+              ]
+          ),
         ));
+  }
+}
+
+class CustomCell extends StatelessWidget {
+  final String text;
+
+  CustomCell({
+    this.text = '',
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 10),
+      child: Center(child: Text(text, textAlign: TextAlign.center,)),
+    );
   }
 }
