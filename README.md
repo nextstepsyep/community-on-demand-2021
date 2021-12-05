@@ -21,3 +21,11 @@ Kevin Huynh
 Jake Smith
 
 Brandon Chung
+
+Release Notes version 1.0:
+NEW FEATURES
+- Everything you see!
+- Create and log into your own Community on Demand account using an email and password. We've gotten some help from Firebase to keep all of your information extra safe!
+- Create your own profile so your friends and classmates can find you!
+- Let the world know about your skills by playing the Community on Demand Card Game! Swipe left, up, or right on each card to indicate the extent to which you possess its associated skill. We hope this gameplay style isn't all too familiar to some of you.
+-
