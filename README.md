@@ -46,6 +46,7 @@ DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
 - Once in desired directory, paste and run 'git clone https://github.com/kellytran3k/community-on-demand.git'
 RUN
+- Run 'flutter pub get', 'flutter pub upgrade', and 'flutter pub outdated' to ensure that all dependencies are up to date and retrieved prior to running the app
 - Pick your desired device in the Flutter Device Selection dropdown
 - If 'main.dart' is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
 - Press run button to run 'main.dart' (or press Shift+F10)
@@ -75,6 +76,7 @@ DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
 - Once in desired directory, paste and run 'git clone https://github.com/kellytran3k/community-on-demand.git'
 RUN
+- Run 'flutter pub get', 'flutter pub upgrade', and 'flutter pub outdated' to ensure that all dependencies are up to date and retrieved prior to running the app
 - Pick your desired device in the Flutter Device Selection dropdown
 - If 'main.dart' is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
 - Press run button to run 'main.dart' (or press Shift+F10)
