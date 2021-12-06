@@ -44,6 +44,7 @@ Brandon Chung
 - Fixed administrator's list of classes resetting after every new launch of the application.
 - Fixed logging out landing on a non-existent page, leading to error.
 - Fixed bug with user having to restart application in order to join a newly created class.
+- Fixed user not being able to access the "Join Class" page after a new class is created.
 
 ## KNOWN BUGS
 - User cannot generate or share their CARES report with their teacher/administrator.
