@@ -25,10 +25,30 @@ Brandon Chung
 Release Notes version 1.0:
 NEW FEATURES
 - Everything you see!
-- Create and log into your own Community on Demand account using an email and password. We've gotten some help from Firebase to keep all of your information extra safe!
-- Create your own profile so your friends and classmates can find you!
-- Let the world know about your skills by playing the Community on Demand Card Game! Swipe left, up, or right on each card to indicate the extent to which you possess its associated skill. We hope this gameplay style isn't all too familiar to some of you.
--
+- Create and log into your own Community on Demand account using an email and password. We've gotten some help from Firebase to keep all of your information extra safe! Have the option to either create a user or administrator account.
+- Create your own profile so your friends and classmates can find you! Edit your profile and log-in information anytime to keep your information up to date.
+- Let the world know about your employability skills by playing the Community on Demand Card Game! Swipe left, up, or right on each card to indicate the extent to which you possess its associated skill. We hope this gameplay style isn't all too familiar to some of you.
+- View your card game results anytime in your profile!
+- Create and delete projects as a user in order to keep a portfolio of your work! Your projects allow you to keep track of your employability skills before you begin and after you finish your project.
+- Join/leave nearby classes to stay connected with your teachers/administrators!
+- Create new classes and delete old ones as a teacher/administrator in order to keep your students/users organized in one place!
+
+BUG FIXES
+- Fixed UI overflow errors caused by too many widgets appearing on the screen.
+- User's list of projects on the front-end now automatically update when creating a new project. Used to have to switch pages/tabs to see updated list.
+- Fixed project's name & description not updating on the database and only updating locally.
+- Fixed user's list of projects resetting on every new launch of the application.
+- Fixed logging in as an administrator causing a backend error with Map key-value accessing.
+- Fixed bug with editing project description that would create a new line on pressing "Enter", as opposed to updating the description.
+- Fixed administrator's list of classes resetting after every new launch of the application.
+- Fixed logging out landing on a non-existent page, leading to error.
+
+KNOWN BUGS
+- User cannot generate or share their CARES report with their teacher/administrator.
+- User cannot notify teacher/administrator of any updates to their project.
+- User cannot add or update new accomplishment badges onto their account.
+- User cannot add multiple people to their project; only one person can work on their project.
+- 
 
 Installation Guide for Community on Demand 1.0 (Windows)
 PRE-REQUISITES
