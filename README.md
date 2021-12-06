@@ -43,6 +43,7 @@ Brandon Chung
 - Fixed bug with editing project description that would create a new line on pressing "Enter", as opposed to updating the description.
 - Fixed administrator's list of classes resetting after every new launch of the application.
 - Fixed logging out landing on a non-existent page, leading to error.
+- Fixed bug with user having to restart application in order to join a newly created class.
 
 ## KNOWN BUGS
 - User cannot generate or share their CARES report with their teacher/administrator.
