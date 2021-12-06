@@ -22,8 +22,9 @@ Jake Smith
 
 Brandon Chung
 
-Release Notes version 1.0:
-NEW FEATURES
+# Release Notes version 1.0:
+
+## NEW FEATURES
 - Everything you see!
 - Create and log into your own Community on Demand account using an email and password. We've gotten some help from Firebase to keep all of your information extra safe! Have the option to either create a user or administrator account.
 - Create your own profile so your friends and classmates can find you! Edit your profile and log-in information anytime to keep your information up to date.
@@ -33,7 +34,7 @@ NEW FEATURES
 - Join/leave nearby classes to stay connected with your teachers/administrators!
 - Create new classes and delete old ones as a teacher/administrator in order to keep your students/users organized in one place!
 
-BUG FIXES
+## BUG FIXES
 - Fixed UI overflow errors caused by too many widgets appearing on the screen.
 - User's list of projects on the front-end now automatically update when creating a new project. Used to have to switch pages/tabs to see updated list.
 - Fixed project's name & description not updating on the database and only updating locally.
@@ -43,43 +44,43 @@ BUG FIXES
 - Fixed administrator's list of classes resetting after every new launch of the application.
 - Fixed logging out landing on a non-existent page, leading to error.
 
-KNOWN BUGS
+## KNOWN BUGS
 - User cannot generate or share their CARES report with their teacher/administrator.
 - User cannot notify teacher/administrator of any updates to their project.
 - User cannot add or update new accomplishment badges onto their account.
 - User cannot add multiple people to their project; only one person can work on their project.
 - 
 
-Installation Guide for Community on Demand 1.0 (Windows)
-PRE-REQUISITES
+# Installation Guide for Community on Demand 1.0 (Windows)
+## PRE-REQUISITES
 - Windows 7 or later
 - Windows PowerShell 5.0 or later (comes pre-installed for Windows 10 users)
 - 15Gb of disk space (7Gb if not using emulated devices)
-DEPENDENCIES
+## DEPENDENCIES
 - Download and install Git (https://git-scm.com/download/win)
 - Download and install Flutter (https://docs.flutter.dev/get-started/install/windows#get-the-flutter-sdk)
 - Download and install Android Studio (https://docs.flutter.dev/get-started/install/windows#install-android-studio)
     - Download and install Flutter plugin for Android Studio (https://docs.flutter.dev/get-started/editor)
     - If using an actual Android device, set up Android device in Android Studio (https://docs.flutter.dev/get-started/install/windows#set-up-your-android-device)
     - If emulating an Android device, set up emulator in Android Studio (https://docs.flutter.dev/get-started/install/windows#set-up-the-android-emulator)
-DOWNLOAD
+## DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
 - Once in desired directory, paste and run 'git clone https://github.com/kellytran3k/community-on-demand.git'
-RUN
+## RUN
 - Run 'flutter pub get', 'flutter pub upgrade', and 'flutter pub outdated' to ensure that all dependencies are up to date and retrieved prior to running the app
 - Pick your desired device in the Flutter Device Selection dropdown
 - If 'main.dart' is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
 - Press run button to run 'main.dart' (or press Shift+F10)
-TROUBLESHOOT
+## TROUBLESHOOT
 - When attempting to run the application, it may be necessary to manually open the emulator in Flutter Device Selection before pressing run in order to ensure that a device is selected
 
 
 
-Installation Guide for Community on Demand 1.0 (MacOS)
-PRE-REQUISITES
+# Installation Guide for Community on Demand 1.0 (MacOS)
+## PRE-REQUISITES
 - Mojave or later
 - 15Gb of disk space (7Gb if not using emulated devices)
-DEPENDENCIES
+## DEPENDENCIES
 - Download and install Git (https://git-scm.com/download/mac)
 - Download and install Flutter (https://docs.flutter.dev/get-started/install/macos#get-sdk)
 If using for Android:
@@ -92,13 +93,13 @@ If using for iOS:
     - Download and install Flutter plugin for Xcode (https://docs.flutter.dev/get-started/editor)
     - If using an actual iOS device, you must deploy the app to the device to test it (https://docs.flutter.dev/get-started/install/macos#deploy-to-ios-devices)
     - If emulating an iOS device, set up emulator in Xcode (https://docs.flutter.dev/get-started/install/macos#set-up-the-ios-simulator)
-DOWNLOAD
+## DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
 - Once in desired directory, paste and run 'git clone https://github.com/kellytran3k/community-on-demand.git'
-RUN
+## RUN
 - Run 'flutter pub get', 'flutter pub upgrade', and 'flutter pub outdated' to ensure that all dependencies are up to date and retrieved prior to running the app
 - Pick your desired device in the Flutter Device Selection dropdown
 - If 'main.dart' is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
 - Press run button to run 'main.dart' (or press Shift+F10)
-TROUBLESHOOT
+## TROUBLESHOOT
 - When attempting to run the application, it may be necessary to manually open the emulator in Flutter Device Selection before pressing run in order to ensure that a device is selected
