@@ -36,14 +36,14 @@ Brandon Chung
 
 ## BUG FIXES
 - Fixed UI overflow errors caused by too many widgets appearing on the screen.
-- User's list of projects on the front-end now automatically update when creating a new project. Used to have to switch pages/tabs to see updated list.
+- User's list of projects on the UI now update in real-time when creating a new project, instead of having to switch pages/tabs to see the updated list.
 - Fixed project's name & description not updating on the database and only updating locally.
 - Fixed user's list of projects resetting on every new launch of the application.
-- Fixed logging in as an administrator causing a backend error with Map key-value accessing.
-- Fixed bug with editing project description that would create a new line on pressing "Enter", as opposed to updating the description.
+- Logging in as an administrator no longer causes a backend error with invalid key-value hashmap accessing.
+- When editing the project description, the "Enter" key no longer creates a new line and instead updates the database with the new description.
 - Fixed administrator's list of classes resetting after every new launch of the application.
-- Fixed logging out landing on a non-existent page, leading to error.
-- Fixed bug with user having to restart application in order to join a newly created class.
+- Logging out no longer leads to a non-existent page, leading to error.
+- User no longer has to restart application in order to join a newly created class.
 - Fixed user not being able to access the "Join Class" page after a new class is created.
 
 ## KNOWN BUGS
