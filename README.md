@@ -49,7 +49,6 @@ Brandon Chung
 - User cannot notify teacher/administrator of any updates to their project.
 - User cannot add or update new accomplishment badges onto their account.
 - User cannot add multiple people to their project; only one person can work on their project.
-- 
 
 # Installation Guide for Community on Demand 1.0 (Windows)
 ## PRE-REQUISITES
