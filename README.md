@@ -50,7 +50,7 @@ Brandon Chung
 - User cannot generate or share their CARES report with their teacher/administrator.
 - User cannot notify teacher/administrator of any updates to their project.
 - User cannot add or update new accomplishment badges onto their account.
-- User cannot add multiple people to their project; only one person can work on their project.
+- User cannot add multiple people to their project; only one person can work on a project.
 - Administrator cannot not see real-time UI updates to their current class when switching to a different class.
 
 # Installation Guide for Community on Demand 1.0 (Windows)
