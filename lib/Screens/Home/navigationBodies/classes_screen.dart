@@ -17,10 +17,7 @@ class ClassesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery
-        .of(context)
-        .size
-        .width;
+    double screenWidth = MediaQuery.of(context).size.width;
     return StreamBuilder<QuerySnapshot>(
         stream: getClassesStream(),
         builder: (context, snapshot) {
