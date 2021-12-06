@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:community_on_demand_code_demo/Screens/Home/navigationBodies/past_projects_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import 'classes_data_services.dart';
+
 String currentClass = "";
 final CollectionReference _userData =
 FirebaseFirestore.instance.collection("users");
@@ -63,9 +65,11 @@ Future addClass(String className) async {
   QuerySnapshot querySnapshot = await _classesData.get();
   final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
 
-  return await _classesData
-      .doc()
-      .set({'name': className, 'code': allData.length});
+  DocumentReference newClass = _classesData.doc();
+  _classIDs.putIfAbsent(allData.length, () => newClass.id);
+  updateClassIDs(allData.length, newClass.id);
+
+  return newClass.set({'name': className, 'code': allData.length, 'teacher': "", 'students': {}});
 }
 
 // Creates a 4 digit class code based each digit having a value of [0-9]

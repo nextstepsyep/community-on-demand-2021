@@ -32,15 +32,12 @@ Stream<QuerySnapshot>? getClassesStream() {
   return _stream;
 }
 
-void createClass(String name, int code, String teacher) {
-  if (_classes!.containsKey(code)) {
-    throw new Exception("Class with code $code already exists");
-  }
-  _classData
-      .add({'name': name, 'code': code, 'teacher': teacher, 'students': {}});
+void updateClassIDs(int code, String id) {
+  _classIDs.putIfAbsent(code, () => id);
 }
 
 void joinClass(int classCode) {
+  initClassesStream();
   String uid = getUserID();
   _classData
       .doc(_classIDs[classCode])
