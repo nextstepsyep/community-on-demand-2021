@@ -59,12 +59,12 @@ Brandon Chung
 - Windows PowerShell 5.0 or later (comes pre-installed for Windows 10 users)
 - 15Gb of disk space (7Gb if not using emulated devices)
 ## DEPENDENCIES
-- Download and install Git (https://git-scm.com/download/win)
-- Download and install Flutter (https://docs.flutter.dev/get-started/install/windows#get-the-flutter-sdk)
-- Download and install Android Studio (https://docs.flutter.dev/get-started/install/windows#install-android-studio)
-    - Download and install Flutter plugin for Android Studio (https://docs.flutter.dev/get-started/editor)
-    - If using an actual Android device, set up Android device in Android Studio (https://docs.flutter.dev/get-started/install/windows#set-up-your-android-device)
-    - If emulating an Android device, set up emulator in Android Studio (https://docs.flutter.dev/get-started/install/windows#set-up-the-android-emulator)
+- Download and install [Git](https://git-scm.com/download/win)
+- Download and install [Flutter](https://docs.flutter.dev/get-started/install/windows#get-the-flutter-sdk)
+- Download and install [Android Studio](https://docs.flutter.dev/get-started/install/windows#install-android-studio)
+    - Download and install [Flutter plugin for Android Studio](https://docs.flutter.dev/get-started/editor)
+    - If using an actual Android device, [set up Android device in Android Studio](https://docs.flutter.dev/get-started/install/windows#set-up-your-android-device)
+    - If emulating an Android device, [set up emulator in Android Studio](https://docs.flutter.dev/get-started/install/windows#set-up-the-android-emulator)
 ## DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
 - Once in desired directory, paste and run 'git clone https://github.com/kellytran3k/community-on-demand.git'
