@@ -93,12 +93,12 @@ Brandon Chung
 ## DEPENDENCIES
 - Download and install [Git](https://git-scm.com/download/mac)
 - Download and install [Flutter](https://docs.flutter.dev/get-started/install/macos#get-sdk)
-If using for Android:
+### If using for Android:
 - Download and install [Android Studio](https://docs.flutter.dev/get-started/install/macos#install-android-studio)
     - Download and install [Flutter plugin for Android Studio](https://docs.flutter.dev/get-started/editor)
     - If using an actual Android device, [set up Android device in Android Studio](https://docs.flutter.dev/get-started/install/macos#set-up-your-android-device)
     - If emulating an Android device, [set up emulator in Android Studio](https://docs.flutter.dev/get-started/install/macos#set-up-the-android-emulator)
-If using for iOS:
+### If using for iOS:
 - Download and install [Xcode](https://docs.flutter.dev/get-started/install/macos#install-xcode)
     - Download and install [Flutter plugin for Xcode](https://docs.flutter.dev/get-started/editor)
     - If using an actual iOS device, you must [deploy the app to the device](https://docs.flutter.dev/get-started/install/macos#deploy-to-ios-devices) to test it
