@@ -67,15 +67,19 @@ Brandon Chung
     - If emulating an Android device, [set up emulator in Android Studio](https://docs.flutter.dev/get-started/install/windows#set-up-the-android-emulator)
 ## DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
-- Once in desired directory, paste and run
+- Once in desired directory, paste and run the following command:
   ```
    git clone https://github.com/kellytran3k/community-on-demand.git
   ```
 ## RUN
-- Run the following commands to ensure that all dependencies are up to date and retrieved prior to running the app
+- Run the following commands to ensure that all dependencies are up to date and retrieved prior to running the app:
   ```
    flutter pub get
+  ```
+  ```
    flutter pub upgrade
+  ```
+  ```
    flutter pub outdated
   ```
 - Pick your desired device in the Flutter Device Selection dropdown
@@ -105,15 +109,19 @@ Brandon Chung
     - If emulating an iOS device, [set up emulator in Xcode](https://docs.flutter.dev/get-started/install/macos#set-up-the-ios-simulator)
 ## DOWNLOAD
 - Navigate to your desired project folder location in the Command Prompt or Android Studio terminal
-- Once in desired directory, paste and run
+- Once in desired directory, paste and run the following command:
   ```
    git clone https://github.com/kellytran3k/community-on-demand.git
   ```
 ## RUN
-- Run the following commands to ensure that all dependencies are up to date and retrieved prior to running the app
+- Run the following commands to ensure that all dependencies are up to date and retrieved prior to running the app:
   ```
    flutter pub get
+  ```
+  ```
    flutter pub upgrade
+  ```
+  ```
    flutter pub outdated
   ```
 - Pick your desired device in the Flutter Device Selection dropdown
