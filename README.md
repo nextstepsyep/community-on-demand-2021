@@ -83,12 +83,10 @@ Brandon Chung
    flutter pub outdated
   ```
 - Pick your desired device in the Flutter Device Selection dropdown
-- If 'main.dart' is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
-- Press run button to run 'main.dart' (or press Shift+F10)
+- If `main.dart` is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
+- Press run button to run `main.dart` (or press Shift+F10)
 ## TROUBLESHOOT
 - When attempting to run the application, it may be necessary to manually open the emulator in Flutter Device Selection before pressing run in order to ensure that a device is selected
-
-
 
 # Installation Guide for Community on Demand 1.0 (MacOS)
 ## PRE-REQUISITES
@@ -125,7 +123,7 @@ Brandon Chung
    flutter pub outdated
   ```
 - Pick your desired device in the Flutter Device Selection dropdown
-- If 'main.dart' is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
-- Press run button to run 'main.dart' (or press Shift+F10)
+- If `main.dart` is not the selected file in the Run/Debug Configs dropdown to the right of the Flutter Device Selection, then select it
+- Press run button to run `main.dart` (or press Shift+F10)
 ## TROUBLESHOOT
 - When attempting to run the application, it may be necessary to manually open the emulator in Flutter Device Selection before pressing run in order to ensure that a device is selected
